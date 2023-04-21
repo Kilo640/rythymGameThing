@@ -62,7 +62,8 @@ public class ArrowSensor extends Entity {
 	}
 	
 	public void draw(Graphics2D g2d) {
-		g2d.drawImage(currImage, getX(), getY(), gp.TILE_SIZE, gp.TILE_SIZE, null);
+		g2d.drawImage(currImage, getX(), getY(), 
+				(int)(1.5*gp.TILE_SIZE), (int)(1.5*gp.TILE_SIZE), null);
 	}
 	
 	private void checkKey(boolean keyPressed) {
