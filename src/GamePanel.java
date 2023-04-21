@@ -9,29 +9,35 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel implements Runnable{
 	private final int UNSCALED_TILE_SIZE = 16;
 	private final int SCALE = 3;
-	private final int TILE_SIZE = UNSCALED_TILE_SIZE * SCALE;
-	private final int SCREEN_COLS = 16;
-	private final int SCREEN_ROWS = 12;
+	public final int TILE_SIZE = UNSCALED_TILE_SIZE * SCALE;
+	private final int SCREEN_COLS = 17;
+	private final int SCREEN_ROWS = 13;
+	private final int FPS = 60;
 	
-	//Screen Size: 768x576
+	//Screen Size: 816x624
 	private final int WIDTH = TILE_SIZE * SCREEN_COLS;
 	private final int HEIGHT = TILE_SIZE * SCREEN_ROWS;
 	
-	private Controller controller;
+	private int scrollSpeed = 1152;
+	
+	private Controller controller = new Controller();
 	private Thread gameClock;
-	private Color arrowColor;
-	private int scrollSpeed;
+	private ArrowSensor leftArrow = new ArrowSensor(5*TILE_SIZE, TILE_SIZE, this, 
+			controller, ArrowSensor.LEFT);
+	private ArrowSensor downArrow = new ArrowSensor(7*TILE_SIZE, TILE_SIZE, this, 
+			controller, ArrowSensor.DOWN);
+	private ArrowSensor upArrow = new ArrowSensor(9*TILE_SIZE, TILE_SIZE, this, 
+			controller, ArrowSensor.UP);
+	private ArrowSensor rightArrow = new ArrowSensor(11*TILE_SIZE, TILE_SIZE, this, 
+			controller, ArrowSensor.RIGHT);
 	
 	public GamePanel() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		setBackground(Color.BLACK);
+		setBackground(Color.GRAY);
 		setDoubleBuffered(true);
 		
-		controller = new Controller();
 		addKeyListener(controller);
 		setFocusable(true);
-		scrollSpeed = 1152; //Pixels per second to travel the screen in 0.5 seconds
-		arrowColor = Color.WHITE;
 	}
 
 	public void startClock() {
@@ -41,23 +47,40 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	@Override
 	public void run() {
+		double frameTime = 1000000000 / FPS;
+		double nextFrameTime = System.nanoTime() + frameTime;
+		
 		while(gameClock != null) {
 			update();
 			repaint();
+			
+			try {
+				double remainingTime = nextFrameTime - System.nanoTime();
+				if(remainingTime < 0) {remainingTime = 0;}
+				Thread.sleep((long)remainingTime / 1000000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			nextFrameTime += frameTime;
 		}
 	}
 	
 	public void update() {
-		if(controller.leftActive) {arrowColor = Color.GRAY;}
-		else {arrowColor = Color.WHITE;}
+		leftArrow.update();
+		downArrow.update();
+		upArrow.update();
+		rightArrow.update();
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		
-		g2d.setColor(arrowColor);
-		g2d.fillRect(WIDTH / 2, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+		leftArrow.draw(g2d);
+		downArrow.draw(g2d);
+		upArrow.draw(g2d);
+		rightArrow.draw(g2d);
 		
 		g2d.dispose();
 	}
