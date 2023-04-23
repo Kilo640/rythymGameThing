@@ -9,15 +9,14 @@ public class ArrowSensor extends Entity {
 	private Controller controller;
 	private BufferedImage inactive, active, currImage;
 	private int direction;
+	private boolean isActive;
 	
 	public static final int LEFT = 0;
 	public static final int DOWN = 1;
 	public static final int UP = 2;
 	public static final int RIGHT = 3;
 	
-	public ArrowSensor(int x, int y, GamePanel gp, 
-			Controller controller, int direction) 
-	{
+	public ArrowSensor(int x, int y, GamePanel gp, Controller controller, int direction) {
 		super(x, y);
 		this.gp = gp;
 		this.controller = controller;
@@ -62,14 +61,15 @@ public class ArrowSensor extends Entity {
 	}
 	
 	public void draw(Graphics2D g2d) {
-		g2d.drawImage(currImage, getX(), getY(), 
-				(int)(1.5*gp.TILE_SIZE), (int)(1.5*gp.TILE_SIZE), null);
+		g2d.drawImage(currImage, getX(), getY(), (int)(1.5*gp.TILE_SIZE), (int)(1.5*gp.TILE_SIZE), null);
 	}
 	
 	private void checkKey(boolean keyPressed) {
 		if(keyPressed) {
+			isActive = true;
 			currImage = active;
 		}else {
+			isActive = false;
 			currImage = inactive;
 		}
 	}
@@ -77,9 +77,9 @@ public class ArrowSensor extends Entity {
 	private void setImages(String direction) {
 		try {
 			active = ImageIO.read(getClass().getResourceAsStream(
-					"/arrowSensor/activated" + direction + "Arrow.png"));
+					"/arrows/activated" + direction + "Arrow.png"));
 			inactive = ImageIO.read(getClass().getResourceAsStream(
-					"/arrowSensor/deactivated" + direction + "Arrow.png"));
+					"/arrows/" + direction + "Arrow.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

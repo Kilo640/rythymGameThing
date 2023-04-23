@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -18,18 +19,19 @@ public class GamePanel extends JPanel implements Runnable{
 	private final int WIDTH = TILE_SIZE * SCREEN_COLS;
 	private final int HEIGHT = TILE_SIZE * SCREEN_ROWS;
 	
-	private int scrollSpeed = 1152;
-	
 	private Controller controller = new Controller();
 	private Thread gameClock;
-	private ArrowSensor leftArrow = new ArrowSensor(5*TILE_SIZE, TILE_SIZE, this, 
+	public int levelTime;
+	public ArrowSensor leftArrow = new ArrowSensor(5*TILE_SIZE, TILE_SIZE, this, 
 			controller, ArrowSensor.LEFT);
-	private ArrowSensor downArrow = new ArrowSensor(7*TILE_SIZE, TILE_SIZE, this, 
+	public ArrowSensor downArrow = new ArrowSensor(7*TILE_SIZE, TILE_SIZE, this, 
 			controller, ArrowSensor.DOWN);
-	private ArrowSensor upArrow = new ArrowSensor(9*TILE_SIZE, TILE_SIZE, this, 
+	public ArrowSensor upArrow = new ArrowSensor(9*TILE_SIZE, TILE_SIZE, this, 
 			controller, ArrowSensor.UP);
-	private ArrowSensor rightArrow = new ArrowSensor(11*TILE_SIZE, TILE_SIZE, this, 
+	public ArrowSensor rightArrow = new ArrowSensor(11*TILE_SIZE, TILE_SIZE, this, 
 			controller, ArrowSensor.RIGHT);
+	public Level currentLevel = new Level(this, "testLevel");
+	private ArrayList<Arrow> levelArrows;
 	
 	public GamePanel() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -38,6 +40,9 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		addKeyListener(controller);
 		setFocusable(true);
+		levelArrows = currentLevel.load();
+		currentLevel.clip.start();
+		currentLevel.startTime = System.currentTimeMillis();
 	}
 
 	public void startClock() {
@@ -67,10 +72,13 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void update() {
+		levelTime = (int)(System.currentTimeMillis() - currentLevel.startTime);
 		leftArrow.update();
 		downArrow.update();
 		upArrow.update();
 		rightArrow.update();
+		
+		for(Arrow arrow : levelArrows) {arrow.update();}
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -81,6 +89,8 @@ public class GamePanel extends JPanel implements Runnable{
 		downArrow.draw(g2d);
 		upArrow.draw(g2d);
 		rightArrow.draw(g2d);
+		
+		for(Arrow arrow : levelArrows) {arrow.draw(g2d);}
 		
 		g2d.dispose();
 	}
