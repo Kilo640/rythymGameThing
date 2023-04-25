@@ -9,7 +9,7 @@ public class Arrow extends Entity {
 	private GamePanel gp;
 	private BufferedImage arrowImage;
 	
-	public int scrollSpeed = 45;
+	public int scrollSpeed = 75;
 	public int direction;
 	private int time; //time (milliseconds) after song start that the note should be hit
 	public boolean isActive = true;
