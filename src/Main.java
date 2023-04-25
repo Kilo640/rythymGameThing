@@ -1,7 +1,7 @@
 import javax.swing.JFrame;
 
 public class Main {
-	public static GamePanel game = new GamePanel();;
+	public static GamePanel game = new GamePanel();
 	
 	public static void main(String[] args) {
 		JFrame window = new JFrame();
