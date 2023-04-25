@@ -2,7 +2,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -16,22 +15,13 @@ public class GamePanel extends JPanel implements Runnable{
 	private final int FPS = 60;
 	
 	//Screen Size: 816x624
-	private final int WIDTH = TILE_SIZE * SCREEN_COLS;
-	private final int HEIGHT = TILE_SIZE * SCREEN_ROWS;
+	public final int WIDTH = TILE_SIZE * SCREEN_COLS;
+	public final int HEIGHT = TILE_SIZE * SCREEN_ROWS;
 	
-	private Controller controller = new Controller();
+	public Controller controller = new Controller();
 	private Thread gameClock;
 	public int levelTime;
-	public ArrowSensor leftArrow = new ArrowSensor(5*TILE_SIZE, TILE_SIZE, this, 
-			controller, ArrowSensor.LEFT);
-	public ArrowSensor downArrow = new ArrowSensor(7*TILE_SIZE, TILE_SIZE, this, 
-			controller, ArrowSensor.DOWN);
-	public ArrowSensor upArrow = new ArrowSensor(9*TILE_SIZE, TILE_SIZE, this, 
-			controller, ArrowSensor.UP);
-	public ArrowSensor rightArrow = new ArrowSensor(11*TILE_SIZE, TILE_SIZE, this, 
-			controller, ArrowSensor.RIGHT);
 	public Level currentLevel = new Level(this, "testLevel");
-	private ArrayList<Arrow> levelArrows;
 	
 	public GamePanel() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -40,9 +30,6 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		addKeyListener(controller);
 		setFocusable(true);
-		levelArrows = currentLevel.load();
-		currentLevel.clip.start();
-		currentLevel.startTime = System.currentTimeMillis();
 	}
 
 	public void startClock() {
@@ -73,24 +60,14 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public void update() {
 		levelTime = (int)(System.currentTimeMillis() - currentLevel.startTime);
-		leftArrow.update();
-		downArrow.update();
-		upArrow.update();
-		rightArrow.update();
-		
-		for(Arrow arrow : levelArrows) {arrow.update();}
+		currentLevel.update();
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		
-		leftArrow.draw(g2d);
-		downArrow.draw(g2d);
-		upArrow.draw(g2d);
-		rightArrow.draw(g2d);
-		
-		for(Arrow arrow : levelArrows) {arrow.draw(g2d);}
+		currentLevel.draw(g2d);
 		
 		g2d.dispose();
 	}

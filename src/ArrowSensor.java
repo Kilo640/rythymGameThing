@@ -9,7 +9,8 @@ public class ArrowSensor extends Entity {
 	private Controller controller;
 	private BufferedImage inactive, active, currImage;
 	private int direction;
-	private boolean isActive;
+	public boolean isActive;
+	public boolean activeLast;
 	
 	public static final int LEFT = 0;
 	public static final int DOWN = 1;
@@ -41,19 +42,21 @@ public class ArrowSensor extends Entity {
 	}
 
 	public void update() {
+		activeLast = isActive;
+		
 		//See, I'm already more educated than YandereDev!
 		switch(direction) {
 			case LEFT:
-				checkKey(controller.leftActive);
+				updateLane(controller.leftActive);
 				break;
 			case DOWN:
-				checkKey(controller.downActive);
+				updateLane(controller.downActive);
 				break;
 			case UP:
-				checkKey(controller.upActive);
+				updateLane(controller.upActive);
 				break;
 			case RIGHT:
-				checkKey(controller.rightActive);
+				updateLane(controller.rightActive);
 				break;
 			default:
 				System.out.println("BruhSoundEffect3.mp3");
@@ -64,7 +67,7 @@ public class ArrowSensor extends Entity {
 		g2d.drawImage(currImage, getX(), getY(), (int)(1.5*gp.TILE_SIZE), (int)(1.5*gp.TILE_SIZE), null);
 	}
 	
-	private void checkKey(boolean keyPressed) {
+	private void updateLane(boolean keyPressed) {
 		if(keyPressed) {
 			isActive = true;
 			currImage = active;

@@ -1,4 +1,6 @@
-import java.io.File;
+import java.awt.Graphics2D;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,29 +12,97 @@ public class Level {
 	public long startTime;
 	private GamePanel gp;
 	private Scanner levelLoader;
+	private URL soundFile;
 	private AudioInputStream audio;
-	public Clip clip;
+	private Clip clip;
+	private ArrayList<Arrow> arrows;
+	public ArrowSensor leftArrow;
+	public ArrowSensor downArrow;
+	public ArrowSensor upArrow;
+	public ArrowSensor rightArrow;
+	public int numArrows;
+	public int arrowsHit;
 	
 	public Level(GamePanel gp, String levelName) {
 		this.gp = gp;
+		leftArrow = new ArrowSensor(5*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.LEFT);
+		downArrow = new ArrowSensor(7*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.DOWN);
+		upArrow = new ArrowSensor(9*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.UP);
+		rightArrow = new ArrowSensor(11*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.RIGHT);
+		
 		try {
-			levelLoader = new Scanner(new File("res/levels/" + levelName + "/chart.txt"));
-			audio = AudioSystem.getAudioInputStream(new File("res/levels/" + levelName + "/music.wav"));
+			InputStream is = getClass().getResourceAsStream("/levels/" + levelName + "/chart.txt");
+			levelLoader = new Scanner(is);
+			soundFile = getClass().getResource("/levels/" + levelName + "/music.wav");
+			audio = AudioSystem.getAudioInputStream(soundFile);
 			clip = AudioSystem.getClip();
 			clip.open(audio);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		arrows = load();
+		clip.start();
+		startTime = System.currentTimeMillis();
 	}
 
 	public ArrayList<Arrow> load(){
 		ArrayList<Arrow> levelArrows = new ArrayList<Arrow>();
 		
-		while(levelLoader.hasNext()) {
-			levelArrows.add(new Arrow(gp, levelLoader.nextInt(), levelLoader.nextInt()));
+		while((levelLoader.hasNext())) {
+			levelArrows.add(new Arrow(gp, levelLoader.nextInt(), levelLoader.nextInt(), this));
 		}
 		
 		levelLoader.close();
 		return levelArrows;
+	}
+
+	public void update() {
+		leftArrow.update();
+		downArrow.update();
+		upArrow.update();
+		rightArrow.update();
+		for(int i = 0; i < arrows.size(); i++) {
+			Arrow currArrow = arrows.get(i);
+			currArrow.update();
+		}
+	}
+
+	public void draw(Graphics2D g2d) {
+		leftArrow.draw(g2d);
+		downArrow.draw(g2d);
+		upArrow.draw(g2d);
+		rightArrow.draw(g2d);
+		for(Arrow arrow : arrows) {arrow.draw(g2d);}
+	}
+	
+	public void printScore() {
+		String grade = "";
+		double accuracy = ((double)arrowsHit / numArrows) * 100;
+		
+		if(accuracy > 99.99) {
+			grade = "SS+";
+		}else if(accuracy >= 97) {
+			grade = "S+";
+		}else if(accuracy >= 95) {
+			grade = "S";
+		}else if(accuracy >= 93) {
+			grade = "A+";
+		}else if(accuracy >= 87) {
+			grade = "A";
+		}else if(accuracy >= 83) {
+			grade = "A-";
+		}else if(accuracy >= 77) {
+			grade = "B+";
+		}else if(accuracy >= 73) {
+			grade = "B";
+		}else if(accuracy >= 67) {
+			grade = "C";
+		}else if(accuracy >= 60) {
+			grade = "C-";
+		}else {
+			grade = "D";
+		}
+		
+		System.out.printf("%.2f%% Accuracy (%s)%n", accuracy, grade);
 	}
 }

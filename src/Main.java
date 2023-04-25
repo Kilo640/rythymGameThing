@@ -11,6 +11,7 @@ public class Main {
 		window.add(game);
 		window.pack();
 		window.setResizable(false);
+		window.setFocusable(true);
 		game.startClock();
 		
 		window.setVisible(true);
