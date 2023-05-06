@@ -1,6 +1,7 @@
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -8,23 +9,25 @@ public class Arrow extends Entity {
 
 	private GamePanel gp;
 	private BufferedImage arrowImage;
-	
+
 	public int scrollSpeed = 75;
 	public int direction;
-	private int time; //time (milliseconds) after song start that the note should be hit
+	private int time; // time (milliseconds) after song start that the note should be hit
 	public boolean isActive = true;
-	private int timeFromTarget;
+	public int timeFromTarget;
 	private Level level;
-	
-	private final int MISS_TIME = 164;
-	public Arrow(GamePanel gp, int direction, int time, Level level) {
+	private Judge judge;
+	private Arrow lastArrow;
+
+	public Arrow(GamePanel gp, int direction, int time, Level level, ArrayList<Arrow> arrows) {
 		super(0, 0);
 		this.gp = gp;
 		this.direction = direction;
 		this.time = time;
 		this.level = level;
-		
-		switch(direction) {
+		judge = level.judge;
+
+		switch (direction) {
 		case ArrowSensor.LEFT:
 			setImages("Left");
 			break;
@@ -40,6 +43,15 @@ public class Arrow extends Entity {
 		default:
 			System.out.println("BruhSoundEffect3.mp3");
 		}
+
+		if (arrows.size() > 0) {
+			Arrow arrow = arrows.get(arrows.size() - 1);
+			for (int i = arrows.size() - 1; i > 0 && arrow.direction != this.direction; i--) {
+				arrow = arrows.get(i);
+			}
+			lastArrow = arrow;
+		}
+
 	}
 
 	private void setImages(String direction) {
@@ -51,17 +63,18 @@ public class Arrow extends Entity {
 	}
 
 	public void update() {
-		timeFromTarget =  time - gp.levelTime;
-		setPosition(arrowX(),arrowY(timeFromTarget));
+		timeFromTarget = time - gp.levelTime;
+		setPosition(arrowX(), arrowY(timeFromTarget));
 		
-		if(isActive) {
-			if(timeFromTarget < -1 * MISS_TIME) {
+		if (isActive && (lastArrow == null || lastArrow.timeFromTarget < -90)) {
+			if (timeFromTarget < -1 * judge.OK) {
 				isActive = false;
 				level.numArrows++;
+				judge.judgeHit(Math.abs(timeFromTarget));
 				return;
 			}
-			
-			switch(direction) {
+
+			switch (direction) {
 			case ArrowSensor.LEFT:
 				checkArrow(level.leftArrow);
 				break;
@@ -79,27 +92,28 @@ public class Arrow extends Entity {
 			}
 		}
 	}
-	
+
 	private void checkArrow(ArrowSensor sensor) {
-		if(sensor.isActive && Math.abs(timeFromTarget) < MISS_TIME && !sensor.activeLast) {
+		int deviance = Math.abs(timeFromTarget);
+
+		if (sensor.isActive && deviance < judge.OK && !sensor.activeLast) {
 			isActive = false;
 			level.numArrows++;
-			level.arrowsHit++;
-			level.printScore();
+			judge.judgeHit(deviance);
 		}
 	}
 
 	public void draw(Graphics2D g2d) {
-		if(getY() > -75 && getY() < gp.HEIGHT && isActive) {
-			g2d.drawImage(arrowImage, getX(), getY(), (int)(1.5*gp.TILE_SIZE), (int)(1.5*gp.TILE_SIZE), null);
+		if (getY() > -75 && getY() < gp.HEIGHT && isActive) {
+			g2d.drawImage(arrowImage, getX(), getY(), (int) (1.5 * gp.TILE_SIZE), (int) (1.5 * gp.TILE_SIZE), null);
 		}
 	}
-	
+
 	private int arrowX() {
 		return gp.TILE_SIZE * (5 + 2 * direction);
 	}
-	
+
 	private int arrowY(int currTime) {
-		return (int)(gp.TILE_SIZE + (1.0 / 60) * scrollSpeed * (timeFromTarget));
+		return (int) (gp.TILE_SIZE + (1.0 / 60) * scrollSpeed * (timeFromTarget));
 	}
 }

@@ -21,7 +21,8 @@ public class Level {
 	public ArrowSensor upArrow;
 	public ArrowSensor rightArrow;
 	public int numArrows;
-	public int arrowsHit;
+	public double arrowHitWeight; //Judgment based "weight" of how many arrows are hit
+	public Judge judge;
 	
 	public Level(GamePanel gp, String levelName) {
 		this.gp = gp;
@@ -29,6 +30,7 @@ public class Level {
 		downArrow = new ArrowSensor(7*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.DOWN);
 		upArrow = new ArrowSensor(9*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.UP);
 		rightArrow = new ArrowSensor(11*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.RIGHT);
+		judge = new Judge(this);
 		
 		try {
 			InputStream is = getClass().getResourceAsStream("/levels/" + levelName + "/chart.txt");
@@ -49,7 +51,7 @@ public class Level {
 		ArrayList<Arrow> levelArrows = new ArrayList<Arrow>();
 		
 		while((levelLoader.hasNext())) {
-			levelArrows.add(new Arrow(gp, levelLoader.nextInt(), levelLoader.nextInt(), this));
+			levelArrows.add(new Arrow(gp, levelLoader.nextInt(), levelLoader.nextInt(), this, levelArrows));
 		}
 		
 		levelLoader.close();
@@ -61,9 +63,8 @@ public class Level {
 		downArrow.update();
 		upArrow.update();
 		rightArrow.update();
-		for(int i = 0; i < arrows.size(); i++) {
-			Arrow currArrow = arrows.get(i);
-			currArrow.update();
+		for(Arrow arrow : arrows) {
+			arrow.update();
 		}
 	}
 
@@ -77,10 +78,12 @@ public class Level {
 	
 	public void printScore() {
 		String grade = "";
-		double accuracy = ((double)arrowsHit / numArrows) * 100;
+		double accuracy = judge.accuracy;
 		
 		if(accuracy > 99.99) {
 			grade = "SS+";
+		}else if(accuracy >= 99) {
+			grade = "SS";
 		}else if(accuracy >= 97) {
 			grade = "S+";
 		}else if(accuracy >= 95) {
@@ -96,13 +99,15 @@ public class Level {
 		}else if(accuracy >= 73) {
 			grade = "B";
 		}else if(accuracy >= 67) {
-			grade = "C";
+			grade = "C+";
 		}else if(accuracy >= 60) {
-			grade = "C-";
-		}else {
+			grade = "C";
+		}else if(accuracy >= 50){
 			grade = "D";
+		}else{
+			grade = "F";
 		}
 		
-		System.out.printf("%.2f%% Accuracy (%s)%n", accuracy, grade);
+		System.out.printf("%s! %.2f%% Accuracy (%s) %n", judge.judgment, accuracy, grade);
 	}
 }
