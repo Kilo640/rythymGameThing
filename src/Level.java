@@ -23,6 +23,8 @@ public class Level {
 	public int numArrows;
 	public double arrowHitWeight; //Judgment based "weight" of how many arrows are hit
 	public Judge judge;
+	public String grade;
+	private ScoreUI score;
 	
 	public Level(GamePanel gp, String levelName) {
 		this.gp = gp;
@@ -31,6 +33,8 @@ public class Level {
 		upArrow = new ArrowSensor(9*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.UP);
 		rightArrow = new ArrowSensor(11*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.RIGHT);
 		judge = new Judge(this);
+		score =  new ScoreUI(6 * gp.TILE_SIZE - 24, gp.HEIGHT - gp.TILE_SIZE - 24, gp, this);
+		grade = "F";
 		
 		try {
 			InputStream is = getClass().getResourceAsStream("/levels/" + levelName + "/chart.txt");
@@ -63,21 +67,23 @@ public class Level {
 		downArrow.update();
 		upArrow.update();
 		rightArrow.update();
-		for(Arrow arrow : arrows) {
-			arrow.update();
+		for(int i = arrows.size() - 1; i >= 0; i--) {
+			arrows.get(i).update();
 		}
+		score.update(judge.accuracy);
 	}
 
 	public void draw(Graphics2D g2d) {
+		
 		leftArrow.draw(g2d);
 		downArrow.draw(g2d);
 		upArrow.draw(g2d);
 		rightArrow.draw(g2d);
 		for(Arrow arrow : arrows) {arrow.draw(g2d);}
+		score.draw(g2d);
 	}
 	
 	public void printScore() {
-		String grade = "";
 		double accuracy = judge.accuracy;
 		
 		if(accuracy > 99.99) {
@@ -108,6 +114,7 @@ public class Level {
 			grade = "F";
 		}
 		
-		System.out.printf("%s! %.2f%% Accuracy (%s) %n", judge.judgment, accuracy, grade);
+		System.out.printf("%s! %d Combo!%n", 
+				judge.judgment, judge.combo);
 	}
 }

@@ -66,7 +66,7 @@ public class Arrow extends Entity {
 		timeFromTarget = time - gp.levelTime;
 		setPosition(arrowX(), arrowY(timeFromTarget));
 		
-		if (isActive && (lastArrow == null || lastArrow.timeFromTarget < -90)) {
+		if (isActive && (lastArrow == null || lastArrow.timeFromTarget < -90 || !lastArrow.isActive)) {
 			if (timeFromTarget < -1 * judge.OK) {
 				isActive = false;
 				level.numArrows++;
@@ -105,7 +105,8 @@ public class Arrow extends Entity {
 
 	public void draw(Graphics2D g2d) {
 		if (getY() > -75 && getY() < gp.HEIGHT && isActive) {
-			g2d.drawImage(arrowImage, getX(), getY(), (int) (1.5 * gp.TILE_SIZE), (int) (1.5 * gp.TILE_SIZE), null);
+			g2d.drawImage(arrowImage, getX(), getY(), 
+					(int) (1.5 * gp.TILE_SIZE), (int) (1.5 * gp.TILE_SIZE), null);
 		}
 	}
 
