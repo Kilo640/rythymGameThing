@@ -70,7 +70,7 @@ public class Arrow extends Entity {
 			if (timeFromTarget < -1 * judge.OK) {
 				isActive = false;
 				level.numArrows++;
-				judge.judgeHit(Math.abs(timeFromTarget));
+				level.grade = judge.judgeHit(Math.abs(timeFromTarget));
 				return;
 			}
 
@@ -99,7 +99,7 @@ public class Arrow extends Entity {
 		if (sensor.isActive && deviance < judge.OK && !sensor.activeLast) {
 			isActive = false;
 			level.numArrows++;
-			judge.judgeHit(deviance);
+			level.grade = judge.judgeHit(deviance);
 		}
 	}
 
@@ -111,7 +111,7 @@ public class Arrow extends Entity {
 	}
 
 	private int arrowX() {
-		return gp.TILE_SIZE * (5 + 2 * direction);
+		return gp.TILE_SIZE * (5 + 2 * direction) - level.SHIFT;
 	}
 
 	private int arrowY(int currTime) {

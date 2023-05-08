@@ -16,7 +16,7 @@ public class Judge {
 		judgment = "";
 	}
 	
-	public void judgeHit(int deviance) {
+	public String judgeHit(int deviance) {
 		if(deviance <= MARVELOUS) {
 			level.arrowHitWeight++;
 			combo++;
@@ -43,6 +43,37 @@ public class Judge {
 		}
 		
 		accuracy = 100 * (level.arrowHitWeight/level.numArrows);
-		level.printScore();
+		return setGrade();
+	}
+	
+	private String setGrade() {
+		String grade = "F";
+		
+		if(accuracy > 99.99) {
+			grade = "SS+";
+		}else if(accuracy >= 99) {
+			grade = "SS";
+		}else if(accuracy >= 97) {
+			grade = "S+";
+		}else if(accuracy >= 95) {
+			grade = "S";
+		}else if(accuracy >= 93) {
+			grade = "A+";
+		}else if(accuracy >= 87) {
+			grade = "A";
+		}else if(accuracy >= 85) {
+			grade = "B+";
+		}else if(accuracy >= 77) {
+			grade = "B";
+		}else if(accuracy >= 75) {
+			grade = "C+";
+		}else if(accuracy >= 67) {
+			grade = "C";
+		}else if(accuracy >= 60){
+			grade = "D";
+		}
+		
+		System.out.printf("%s!%n", judgment);
+		return grade;
 	}
 }

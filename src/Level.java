@@ -25,16 +25,24 @@ public class Level {
 	public Judge judge;
 	public String grade;
 	private ScoreUI score;
+	private ComboCounter combo;
+	
+	public final int SHIFT = 12;
 	
 	public Level(GamePanel gp, String levelName) {
 		this.gp = gp;
-		leftArrow = new ArrowSensor(5*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.LEFT);
-		downArrow = new ArrowSensor(7*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.DOWN);
-		upArrow = new ArrowSensor(9*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.UP);
-		rightArrow = new ArrowSensor(11*gp.TILE_SIZE, gp.TILE_SIZE, gp, gp.controller, ArrowSensor.RIGHT);
+		leftArrow = new ArrowSensor(5*gp.TILE_SIZE - SHIFT, gp.TILE_SIZE,
+				gp, gp.controller, ArrowSensor.LEFT);
+		downArrow = new ArrowSensor(7*gp.TILE_SIZE - SHIFT, gp.TILE_SIZE, gp, 
+				gp.controller, ArrowSensor.DOWN);
+		upArrow = new ArrowSensor(9*gp.TILE_SIZE - SHIFT, gp.TILE_SIZE, gp, 
+				gp.controller, ArrowSensor.UP);
+		rightArrow = new ArrowSensor(11*gp.TILE_SIZE - SHIFT, gp.TILE_SIZE, 
+				gp, gp.controller, ArrowSensor.RIGHT);
 		judge = new Judge(this);
-		score =  new ScoreUI(6 * gp.TILE_SIZE - 24, gp.HEIGHT - gp.TILE_SIZE - 24, gp, this);
+		score =  new ScoreUI(6 * gp.TILE_SIZE - SHIFT - 6, gp.HEIGHT - gp.TILE_SIZE - 24, gp, this);
 		grade = "F";
+		combo = new ComboCounter(8 * gp.TILE_SIZE - SHIFT, 6 * gp.TILE_SIZE, gp);
 		
 		try {
 			InputStream is = getClass().getResourceAsStream("/levels/" + levelName + "/chart.txt");
@@ -71,10 +79,11 @@ public class Level {
 			arrows.get(i).update();
 		}
 		score.update(judge.accuracy);
+		combo.update(judge.combo);
 	}
 
 	public void draw(Graphics2D g2d) {
-		
+		combo.draw(g2d);
 		leftArrow.draw(g2d);
 		downArrow.draw(g2d);
 		upArrow.draw(g2d);
@@ -83,38 +92,5 @@ public class Level {
 		score.draw(g2d);
 	}
 	
-	public void printScore() {
-		double accuracy = judge.accuracy;
-		
-		if(accuracy > 99.99) {
-			grade = "SS+";
-		}else if(accuracy >= 99) {
-			grade = "SS";
-		}else if(accuracy >= 97) {
-			grade = "S+";
-		}else if(accuracy >= 95) {
-			grade = "S";
-		}else if(accuracy >= 93) {
-			grade = "A+";
-		}else if(accuracy >= 87) {
-			grade = "A";
-		}else if(accuracy >= 83) {
-			grade = "A-";
-		}else if(accuracy >= 77) {
-			grade = "B+";
-		}else if(accuracy >= 73) {
-			grade = "B";
-		}else if(accuracy >= 67) {
-			grade = "C+";
-		}else if(accuracy >= 60) {
-			grade = "C";
-		}else if(accuracy >= 50){
-			grade = "D";
-		}else{
-			grade = "F";
-		}
-		
-		System.out.printf("%s! %d Combo!%n", 
-				judge.judgment, judge.combo);
-	}
+
 }
