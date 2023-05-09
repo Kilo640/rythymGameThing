@@ -64,7 +64,7 @@ public class Arrow extends Entity {
 	}
 
 	public void update() {
-		timeFromTarget = time - gp.levelTime;
+		timeFromTarget = time - level.levelTime;
 		setPosition(arrowX(), arrowY(timeFromTarget));
 		
 		if (isActive && (lastArrow == null || lastArrow.timeFromTarget < -90 || !lastArrow.isActive)) {

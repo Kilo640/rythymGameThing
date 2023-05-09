@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable{
 	private final int UNSCALED_TILE_SIZE = 16;
-	private final int SCALE = 3;
+	public final int SCALE = 3;
 	public final int TILE_SIZE = UNSCALED_TILE_SIZE * SCALE;
 	private final int SCREEN_COLS = 17;
 	private final int SCREEN_ROWS = 13;
@@ -20,7 +20,6 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public Controller controller = new Controller();
 	private Thread gameClock;
-	public int levelTime;
 	public Level currentLevel = new Level(this, "testLevel");
 	
 	public GamePanel() {
@@ -59,7 +58,6 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void update() {
-		levelTime = (int)(System.currentTimeMillis() - currentLevel.startTime);
 		currentLevel.update();
 	}
 	

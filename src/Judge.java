@@ -1,19 +1,42 @@
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class Judge {
+import javax.imageio.ImageIO;
+
+public class Judge extends Entity{
 	public double accuracy;
 	private Level level;
 	public String judgment;
 	public int combo;
+	private int judgeTime;
+	BufferedImage judgeImage;
 	
 	public final int OK = 180;
 	private final int GOOD = 135;
 	private final int GREAT = 90;
 	private final int PERFECT = 45;
 	private final int MARVELOUS = 23;
+	private final int DISPLAY_TIME = 500;
 	
-	public Judge(Level level) {
+	public Judge(int x, int y, Level level) {
+		super(x, y);
 		this.level = level;
 		judgment = "";
+		judgeTime = -Integer.MAX_VALUE;
+	}
+	
+	public void draw(Graphics2D g2d) {
+		if((level.levelTime - judgeTime) < DISPLAY_TIME) {
+			try {
+				judgeImage = ImageIO.read(new File("resources/UI/judgments/" + judgment + ".png"));
+				g2d.drawImage(judgeImage, getX(), getY(), 
+						2 * judgeImage.getWidth(), 2 * judgeImage.getHeight(), null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public String judgeHit(int deviance) {
@@ -43,6 +66,7 @@ public class Judge {
 		}
 		
 		accuracy = 100 * (level.arrowHitWeight/level.numArrows);
+		judgeTime = level.levelTime;
 		return setGrade();
 	}
 	
@@ -73,7 +97,6 @@ public class Judge {
 			grade = "D";
 		}
 		
-		System.out.printf("%s!%n", judgment);
 		return grade;
 	}
 }

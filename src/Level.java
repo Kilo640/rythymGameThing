@@ -9,7 +9,8 @@ import javax.sound.sampled.Clip;
 
 public class Level {
 	public long startTime;
-	private GamePanel gp;
+	public int levelTime;
+	public GamePanel gp;
 	private Scanner levelLoader;
 	private AudioInputStream audio;
 	private Clip clip;
@@ -37,10 +38,10 @@ public class Level {
 				gp.controller, ArrowSensor.UP);
 		rightArrow = new ArrowSensor(11*gp.TILE_SIZE - SHIFT, gp.TILE_SIZE, 
 				gp, gp.controller, ArrowSensor.RIGHT);
-		judge = new Judge(this);
 		score =  new ScoreUI(6 * gp.TILE_SIZE - SHIFT - 6, gp.HEIGHT - gp.TILE_SIZE - 24, gp, this);
 		grade = "F";
-		combo = new ComboCounter(8 * gp.TILE_SIZE - SHIFT, 6 * gp.TILE_SIZE, gp);
+		combo = new ComboCounter(8 * gp.TILE_SIZE - SHIFT - 6, 6 * gp.TILE_SIZE, gp);
+		judge = new Judge(7 * gp.TILE_SIZE - SHIFT - 6, combo.getY() + gp.TILE_SIZE + 12, this);
 		
 		try {
 			levelLoader = new Scanner(new File("resources/levels/" + levelName + "/chart.txt"));
@@ -67,6 +68,7 @@ public class Level {
 	}
 
 	public void update() {
+		levelTime = (int)(System.currentTimeMillis() - startTime);
 		leftArrow.update();
 		downArrow.update();
 		upArrow.update();
@@ -80,6 +82,7 @@ public class Level {
 
 	public void draw(Graphics2D g2d) {
 		combo.draw(g2d);
+		judge.draw(g2d);
 		leftArrow.draw(g2d);
 		downArrow.draw(g2d);
 		upArrow.draw(g2d);
