@@ -1,6 +1,5 @@
 import java.awt.Graphics2D;
-import java.io.InputStream;
-import java.net.URL;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,7 +11,6 @@ public class Level {
 	public long startTime;
 	private GamePanel gp;
 	private Scanner levelLoader;
-	private URL soundFile;
 	private AudioInputStream audio;
 	private Clip clip;
 	private ArrayList<Arrow> arrows;
@@ -45,10 +43,8 @@ public class Level {
 		combo = new ComboCounter(8 * gp.TILE_SIZE - SHIFT, 6 * gp.TILE_SIZE, gp);
 		
 		try {
-			InputStream is = getClass().getResourceAsStream("/levels/" + levelName + "/chart.txt");
-			levelLoader = new Scanner(is);
-			soundFile = getClass().getResource("/levels/" + levelName + "/music.wav");
-			audio = AudioSystem.getAudioInputStream(soundFile);
+			levelLoader = new Scanner(new File("resources/levels/" + levelName + "/chart.txt"));
+			audio = AudioSystem.getAudioInputStream(new File("resources/levels/" + levelName + "/music.wav"));
 			clip = AudioSystem.getClip();
 			clip.open(audio);
 		} catch (Exception e) {

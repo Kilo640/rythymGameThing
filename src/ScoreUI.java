@@ -1,5 +1,6 @@
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -23,8 +24,8 @@ public class ScoreUI extends Entity {
 		this.level = level;
 		
 		try {
-			point = ImageIO.read(getClass().getResourceAsStream("/UI/digits/..png"));
-			percent = ImageIO.read(getClass().getResourceAsStream("/UI/digits/%.png"));
+			point = ImageIO.read(new File("resources/UI/digits/..png"));
+			percent = ImageIO.read(new File("resources/UI/digits/%.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -59,12 +60,12 @@ public class ScoreUI extends Entity {
 		}
 		
 		try {
-			hundreds = ImageIO.read(getClass().getResourceAsStream("/UI/digits/" + hundred + ".png"));
-			tens = ImageIO.read(getClass().getResourceAsStream("/UI/digits/" + ten + ".png"));
-			ones = ImageIO.read(getClass().getResourceAsStream("/UI/digits/" + one + ".png"));
-			tenths = ImageIO.read(getClass().getResourceAsStream("/UI/digits/" + tenth + ".png"));
-			hundreths = ImageIO.read(getClass().getResourceAsStream("/UI/digits/" + hundreth + ".png"));
-			grade = ImageIO.read(getClass().getResourceAsStream("/UI/grades/" + level.grade + ".png"));
+			hundreds = ImageIO.read(new File("resources/UI/digits/" + hundred + ".png"));
+			tens = ImageIO.read(new File("resources/UI/digits/" + ten + ".png"));
+			ones = ImageIO.read(new File("resources/UI/digits/" + one + ".png"));
+			tenths = ImageIO.read(new File("resources/UI/digits/" + tenth + ".png"));
+			hundreths = ImageIO.read(new File("resources/UI/digits/" + hundreth + ".png"));
+			grade = ImageIO.read(new File("resources/UI/grades/" + level.grade + ".png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

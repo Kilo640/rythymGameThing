@@ -1,5 +1,6 @@
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -34,8 +35,7 @@ public class ComboCounter extends Entity {
 			int x = (int)(getX() + ((digitNum - middleDigit) * (gp.TILE_SIZE - 18)));
 			int digit = digits.get(i);
 			try {
-				BufferedImage digitImage = ImageIO.read(
-						getClass().getResourceAsStream("/UI/digits/" + digit + ".png"));
+				BufferedImage digitImage = ImageIO.read(new File("resources/UI/digits/" + digit + ".png"));
 				g2d.drawImage(digitImage, x, getY(), gp.TILE_SIZE, gp.TILE_SIZE, null);
 			} catch (IOException e) {
 				e.printStackTrace();

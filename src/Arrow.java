@@ -1,5 +1,6 @@
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -56,7 +57,7 @@ public class Arrow extends Entity {
 
 	private void setImages(String direction) {
 		try {
-			arrowImage = ImageIO.read(getClass().getResourceAsStream("/arrows/" + direction + "Arrow.png"));
+			arrowImage = ImageIO.read(new File("resources/arrows/" + direction + "Arrow.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

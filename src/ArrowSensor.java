@@ -1,5 +1,6 @@
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -79,10 +80,8 @@ public class ArrowSensor extends Entity {
 	
 	private void setImages(String direction) {
 		try {
-			active = ImageIO.read(getClass().getResourceAsStream(
-					"/arrows/activated" + direction + "Arrow.png"));
-			inactive = ImageIO.read(getClass().getResourceAsStream(
-					"/arrows/" + direction + "Arrow.png"));
+			active = ImageIO.read(new File("resources/arrows/activated" + direction + "Arrow.png"));
+			inactive = ImageIO.read(new File("resources/arrows/" + direction + "Arrow.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
