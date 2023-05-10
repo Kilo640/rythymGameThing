@@ -24,8 +24,8 @@ public class ScoreUI extends Entity {
 		this.level = level;
 		
 		try {
-			point = ImageIO.read(new File("resources/UI/digits/..png"));
-			percent = ImageIO.read(new File("resources/UI/digits/%.png"));
+			point = ImageIO.read(new File("resources/UI/gameplay/digits/..png"));
+			percent = ImageIO.read(new File("resources/UI/gameplay/digits/%.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -60,12 +60,12 @@ public class ScoreUI extends Entity {
 		}
 		
 		try {
-			hundreds = ImageIO.read(new File("resources/UI/digits/" + hundred + ".png"));
-			tens = ImageIO.read(new File("resources/UI/digits/" + ten + ".png"));
-			ones = ImageIO.read(new File("resources/UI/digits/" + one + ".png"));
-			tenths = ImageIO.read(new File("resources/UI/digits/" + tenth + ".png"));
-			hundreths = ImageIO.read(new File("resources/UI/digits/" + hundreth + ".png"));
-			grade = ImageIO.read(new File("resources/UI/grades/" + level.grade + ".png"));
+			hundreds = ImageIO.read(new File("resources/UI/gameplay/digits/" + hundred + ".png"));
+			tens = ImageIO.read(new File("resources/UI/gameplay/digits/" + ten + ".png"));
+			ones = ImageIO.read(new File("resources/UI/gameplay/digits/" + one + ".png"));
+			tenths = ImageIO.read(new File("resources/UI/gameplay/digits/" + tenth + ".png"));
+			hundreths = ImageIO.read(new File("resources/UI/gameplay/digits/" + hundreth + ".png"));
+			grade = ImageIO.read(new File("resources/UI/gameplay/grades/" + level.grade + ".png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

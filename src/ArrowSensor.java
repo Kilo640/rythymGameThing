@@ -4,6 +4,11 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class ArrowSensor extends Entity {
 	private GamePanel gp;
@@ -61,6 +66,27 @@ public class ArrowSensor extends Entity {
 				break;
 			default:
 				System.out.println("BruhSoundEffect3.mp3");
+		}
+		
+		if(!activeLast && isActive) {
+			Clip hitSound = null;
+			AudioInputStream audio;
+			
+			try {
+				audio = AudioSystem.getAudioInputStream(new File("resources/SFX/hitSound.wav"));
+				hitSound = AudioSystem.getClip();
+				hitSound.open(audio);
+			} catch (LineUnavailableException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (UnsupportedAudioFileException e) {
+				e.printStackTrace();
+			}
+			
+			if(hitSound != null) {
+				hitSound.start();
+			}
 		}
 	}
 	

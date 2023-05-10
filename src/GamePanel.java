@@ -2,7 +2,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -20,7 +24,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public Controller controller = new Controller();
 	private Thread gameClock;
-	public Level currentLevel = new Level(this, "testLevel");
+	public Level currentLevel;
 	
 	public GamePanel() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -58,14 +62,43 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void update() {
-		currentLevel.update();
+		switch(GameState.state) {
+			case GameState.MENU:
+				if(currentLevel != null) {currentLevel.levelTime = 0;}
+				if(controller.spaceActive) {
+					GameState.state = GameState.PLAYING;
+				}
+				break;
+			case GameState.PLAYING:
+				if(currentLevel == null || !currentLevel.playing) {
+					currentLevel = new Level(this, "testLevel");
+				}
+				else {currentLevel.update();}
+				if(controller.escActive) {
+					currentLevel.exitToMenu();
+				}
+				break;
+		}
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		
-		currentLevel.draw(g2d);
+		switch(GameState.state) {
+			case GameState.MENU:
+			try {
+				BufferedImage menu = ImageIO.read(new File("resources/UI/menu/pressSpace.png"));
+				g2d.drawImage(menu, 300, 250,
+						5 * menu.getWidth(), 5 * menu.getHeight(), null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+				break;
+			case GameState.PLAYING:
+				if(currentLevel != null && currentLevel.playing) {currentLevel.draw(g2d);}
+				break;
+		}
 		
 		g2d.dispose();
 	}

@@ -13,12 +13,12 @@ public class Arrow extends Entity {
 
 	public int scrollSpeed = 75;
 	public int direction;
-	private int time; // time (milliseconds) after song start that the note should be hit
+	public int time; // time (milliseconds) after song start that the note should be hit
 	public boolean isActive = true;
-	public int timeFromTarget;
+	public long timeFromTarget;
 	private Level level;
 	private Judge judge;
-	private Arrow lastArrow;
+	Arrow lastArrow;
 
 	public Arrow(GamePanel gp, int direction, int time, Level level, ArrayList<Arrow> arrows) {
 		super(0, 0);
@@ -65,13 +65,13 @@ public class Arrow extends Entity {
 
 	public void update() {
 		timeFromTarget = time - level.levelTime;
-		setPosition(arrowX(), arrowY(timeFromTarget));
+		setPosition(arrowX(), arrowY((int)timeFromTarget));
 		
 		if (isActive && (lastArrow == null || lastArrow.timeFromTarget < -90 || !lastArrow.isActive)) {
 			if (timeFromTarget < -1 * judge.OK) {
 				isActive = false;
 				level.numArrows++;
-				level.grade = judge.judgeHit(Math.abs(timeFromTarget));
+				level.grade = judge.judgeHit((int)Math.abs(timeFromTarget));
 				return;
 			}
 
@@ -95,7 +95,7 @@ public class Arrow extends Entity {
 	}
 
 	private void checkArrow(ArrowSensor sensor) {
-		int deviance = Math.abs(timeFromTarget);
+		int deviance = (int)Math.abs(timeFromTarget);
 
 		if (sensor.isActive && deviance < judge.OK && !sensor.activeLast) {
 			isActive = false;

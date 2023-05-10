@@ -3,7 +3,7 @@ import java.awt.event.KeyListener;
 
 public class Controller implements KeyListener{
 
-	public boolean leftActive, downActive, upActive, rightActive;
+	public boolean leftActive, downActive, upActive, rightActive, spaceActive, escActive;
 	
 	@Override
 	//Unneeded method
@@ -17,6 +17,8 @@ public class Controller implements KeyListener{
 		if(key == KeyEvent.VK_F) {downActive = true;}
 		if(key == KeyEvent.VK_J) {upActive = true;}
 		if(key == KeyEvent.VK_K) {rightActive = true;}
+		if(key == KeyEvent.VK_SPACE) {spaceActive = true;}
+		if(key == KeyEvent.VK_ESCAPE) {escActive = true;}
 	}
 
 	@Override
@@ -27,6 +29,8 @@ public class Controller implements KeyListener{
 		if(key == KeyEvent.VK_F) {downActive = false;}
 		if(key == KeyEvent.VK_J) {upActive = false;}
 		if(key == KeyEvent.VK_K) {rightActive = false;}
+		if(key == KeyEvent.VK_SPACE) {spaceActive = false;}
+		if(key == KeyEvent.VK_ESCAPE) {escActive = false;}
 	}
 
 }

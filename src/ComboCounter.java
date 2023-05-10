@@ -35,7 +35,8 @@ public class ComboCounter extends Entity {
 			int x = (int)(getX() + ((digitNum - middleDigit) * (gp.TILE_SIZE - 18)));
 			int digit = digits.get(i);
 			try {
-				BufferedImage digitImage = ImageIO.read(new File("resources/UI/digits/" + digit + ".png"));
+				BufferedImage digitImage = ImageIO.read(new File("resources/UI/gameplay/"
+						+ "digits/" + digit + ".png"));
 				g2d.drawImage(digitImage, x, getY(), gp.TILE_SIZE, gp.TILE_SIZE, null);
 			} catch (IOException e) {
 				e.printStackTrace();

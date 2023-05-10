@@ -10,7 +10,7 @@ public class Judge extends Entity{
 	private Level level;
 	public String judgment;
 	public int combo;
-	private int judgeTime;
+	private long judgeTime;
 	BufferedImage judgeImage;
 	
 	public final int OK = 180;
@@ -23,14 +23,14 @@ public class Judge extends Entity{
 	public Judge(int x, int y, Level level) {
 		super(x, y);
 		this.level = level;
-		judgment = "";
+		judgment = "Miss";
 		judgeTime = -Integer.MAX_VALUE;
 	}
 	
 	public void draw(Graphics2D g2d) {
 		if((level.levelTime - judgeTime) < DISPLAY_TIME) {
 			try {
-				judgeImage = ImageIO.read(new File("resources/UI/judgments/" + judgment + ".png"));
+				judgeImage = ImageIO.read(new File("resources/UI/gameplay/judgments/" + judgment + ".png"));
 				g2d.drawImage(judgeImage, getX(), getY(), 
 						2 * judgeImage.getWidth(), 2 * judgeImage.getHeight(), null);
 			} catch (IOException e) {
