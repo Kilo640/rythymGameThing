@@ -33,7 +33,7 @@ public class ScoreUI extends Entity {
 
 	public void update(double accuracy) {
 		int hundred = (int)(accuracy / 100);
-		int ten = ((int)accuracy % 100) / 10;
+		int ten = ((int)accuracy / 10) % 10;
 		int one = (int)accuracy % 10;
 		int tenth = (int)(accuracy * 10) % 10;
 		int hundreth = (int)(accuracy * 100) % 10;
@@ -42,16 +42,16 @@ public class ScoreUI extends Entity {
 		if(((int)(accuracy * 1000) % 10) >= 5){
 			hundreth++;
 			if(hundreth > 9) {
-				hundreth = 9;
+				hundreth = 0;
 				tenth++;
 				if(tenth > 9) {
-					tenth = 9;
+					tenth = 0;
 					one++;
 					if(one > 9) {
-						one = 9;
+						one = 0;
 						ten++;
 						if(ten > 9) {
-							ten = 9;
+							ten = 0;
 							hundred++;
 						}
 					}
