@@ -50,7 +50,9 @@ public class Arrow extends Entity {
 			for (int i = arrows.size() - 1; i > 0 && arrow.direction != this.direction; i--) {
 				arrow = arrows.get(i);
 			}
-			lastArrow = arrow;
+			if(arrow != null && this.direction == arrow.direction) {
+				lastArrow = arrow;
+			}
 		}
 
 	}
