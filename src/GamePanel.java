@@ -16,7 +16,9 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int TILE_SIZE = UNSCALED_TILE_SIZE * SCALE;
 	private final int SCREEN_COLS = 17;
 	private final int SCREEN_ROWS = 13;
-	private final int FPS = 60;
+	private final int FPS = 120;
+	private long startTime = System.currentTimeMillis();
+	private long nextCollection = 1000;
 	
 	//Screen Size: 816x624
 	public final int WIDTH = TILE_SIZE * SCREEN_COLS;
@@ -64,18 +66,18 @@ public class GamePanel extends JPanel implements Runnable{
 	public void update() {
 		switch(GameState.state) {
 			case GameState.MENU:
-				if(currentLevel != null) {currentLevel.levelTime = 0;}
+				currentLevel = null;
 				if(controller.spaceActive) {
 					GameState.state = GameState.PLAYING;
 				}
 				break;
 			case GameState.PLAYING:
-				if(currentLevel == null || !currentLevel.playing) {
+				if(currentLevel == null) {
 					currentLevel = new Level(this, "testLevel");
 				}
 				else {currentLevel.update();}
 				if(controller.escActive) {
-					currentLevel.exitToMenu();
+					currentLevel.endLevel();
 				}
 				break;
 		}
@@ -96,10 +98,11 @@ public class GamePanel extends JPanel implements Runnable{
 			}
 				break;
 			case GameState.PLAYING:
-				if(currentLevel != null && currentLevel.playing) {currentLevel.draw(g2d);}
+				if(currentLevel != null) {currentLevel.draw(g2d);}
 				break;
 		}
-		
-		g2d.dispose();
-	}
+				g2d.dispose();
+	}		
+
 }
+

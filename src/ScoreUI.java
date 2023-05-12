@@ -11,6 +11,8 @@ public class ScoreUI extends Entity {
 	private BufferedImage ones;
 	private BufferedImage tenths;
 	private BufferedImage hundreths;
+	public static BufferedImage[] digitImages;
+	private BufferedImage[] grades;
 	private BufferedImage point;
 	private BufferedImage percent;
 	private BufferedImage grade;
@@ -22,10 +24,27 @@ public class ScoreUI extends Entity {
 		super(x, y);
 		this.gp = gp;
 		this.level = level;
+		digitImages = new BufferedImage[10];
+		grades = new BufferedImage[12];
 		
 		try {
 			point = ImageIO.read(new File("resources/UI/gameplay/digits/..png"));
 			percent = ImageIO.read(new File("resources/UI/gameplay/digits/%.png"));
+			for(int i = 0; i < digitImages.length; i++) {
+				digitImages[i] = ImageIO.read(new File("resources/UI/gameplay/digits/" + i + ".png"));
+			}
+			grades[0] = ImageIO.read(new File("resources/UI/gameplay/grades/F.png"));
+			grades[1] = ImageIO.read(new File("resources/UI/gameplay/grades/D.png"));
+			grades[2] = ImageIO.read(new File("resources/UI/gameplay/grades/C.png"));
+			grades[3] = ImageIO.read(new File("resources/UI/gameplay/grades/C+.png"));
+			grades[4] = ImageIO.read(new File("resources/UI/gameplay/grades/B.png"));
+			grades[5] = ImageIO.read(new File("resources/UI/gameplay/grades/B+.png"));
+			grades[6] = ImageIO.read(new File("resources/UI/gameplay/grades/A.png"));
+			grades[7] = ImageIO.read(new File("resources/UI/gameplay/grades/A+.png"));
+			grades[8] = ImageIO.read(new File("resources/UI/gameplay/grades/S.png"));
+			grades[9] = ImageIO.read(new File("resources/UI/gameplay/grades/S+.png"));
+			grades[10] = ImageIO.read(new File("resources/UI/gameplay/grades/SS.png"));
+			grades[11] = ImageIO.read(new File("resources/UI/gameplay/grades/SS+.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -59,16 +78,12 @@ public class ScoreUI extends Entity {
 			}
 		}
 		
-		try {
-			hundreds = ImageIO.read(new File("resources/UI/gameplay/digits/" + hundred + ".png"));
-			tens = ImageIO.read(new File("resources/UI/gameplay/digits/" + ten + ".png"));
-			ones = ImageIO.read(new File("resources/UI/gameplay/digits/" + one + ".png"));
-			tenths = ImageIO.read(new File("resources/UI/gameplay/digits/" + tenth + ".png"));
-			hundreths = ImageIO.read(new File("resources/UI/gameplay/digits/" + hundreth + ".png"));
-			grade = ImageIO.read(new File("resources/UI/gameplay/grades/" + level.grade + ".png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		hundreds = digitImages[hundred];
+		tens = digitImages[ten];
+		ones = digitImages[one];
+		tenths = digitImages[tenth];
+		hundreths = digitImages[hundreth];
+		grade = grades[level.grade];
 	}
 
 	public void draw(Graphics2D g2d) {

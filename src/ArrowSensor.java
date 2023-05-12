@@ -53,16 +53,16 @@ public class ArrowSensor extends Entity {
 		//See, I'm already more educated than YandereDev!
 		switch(direction) {
 			case LEFT:
-				updateLane(controller.leftActive);
+				updateKeyPress(controller.leftActive);
 				break;
 			case DOWN:
-				updateLane(controller.downActive);
+				updateKeyPress(controller.downActive);
 				break;
 			case UP:
-				updateLane(controller.upActive);
+				updateKeyPress(controller.upActive);
 				break;
 			case RIGHT:
-				updateLane(controller.rightActive);
+				updateKeyPress(controller.rightActive);
 				break;
 			default:
 				System.out.println("BruhSoundEffect3.mp3");
@@ -87,6 +87,9 @@ public class ArrowSensor extends Entity {
 			if(hitSound != null) {
 				hitSound.start();
 			}
+			//Unassigns after playing for garbage collection
+			hitSound = null;
+			audio = null;
 		}
 	}
 	
@@ -94,7 +97,7 @@ public class ArrowSensor extends Entity {
 		g2d.drawImage(currImage, getX(), getY(), (int)(1.5*gp.TILE_SIZE), (int)(1.5*gp.TILE_SIZE), null);
 	}
 	
-	private void updateLane(boolean keyPressed) {
+	private void updateKeyPress(boolean keyPressed) {
 		if(keyPressed) {
 			isActive = true;
 			currImage = active;

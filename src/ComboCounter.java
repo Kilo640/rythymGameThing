@@ -1,10 +1,5 @@
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 public class ComboCounter extends Entity {
 	private GamePanel gp;
@@ -34,13 +29,7 @@ public class ComboCounter extends Entity {
 			int digitNum = comboDigits - i;
 			int x = (int)(getX() + ((digitNum - middleDigit) * (gp.TILE_SIZE - 18)));
 			int digit = digits.get(i);
-			try {
-				BufferedImage digitImage = ImageIO.read(new File("resources/UI/gameplay/"
-						+ "digits/" + digit + ".png"));
-				g2d.drawImage(digitImage, x, getY(), gp.TILE_SIZE, gp.TILE_SIZE, null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			g2d.drawImage(ScoreUI.digitImages[digit], x, getY(), gp.TILE_SIZE, gp.TILE_SIZE, null);
 		}
 	}
 }

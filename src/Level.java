@@ -23,10 +23,9 @@ public class Level {
 	public int numArrows;
 	public double arrowHitWeight; //Judgment based "weight" of how many arrows are hit
 	public Judge judge;
-	public String grade;
+	public int grade;
 	private ScoreUI score;
 	private ComboCounter combo;
-	public boolean playing;
 	
 	public final int SHIFT = 12;
 	
@@ -41,7 +40,6 @@ public class Level {
 		rightArrow = new ArrowSensor(11*gp.TILE_SIZE - SHIFT, gp.TILE_SIZE, 
 				gp, gp.controller, ArrowSensor.RIGHT);
 		score =  new ScoreUI(6 * gp.TILE_SIZE - SHIFT - 6, gp.HEIGHT - gp.TILE_SIZE - 24, gp, this);
-		grade = "F";
 		combo = new ComboCounter(8 * gp.TILE_SIZE - SHIFT - 6, 6 * gp.TILE_SIZE, gp);
 		judge = new Judge(7 * gp.TILE_SIZE - SHIFT - 6, combo.getY() + gp.TILE_SIZE + 12, this);
 		try {
@@ -55,7 +53,6 @@ public class Level {
 		arrows = load();
 		startTime = System.currentTimeMillis();
 		endTime = arrows.get(arrows.size() - 1).time + 2000;
-		playing = true;
 	}
 
 	public ArrayList<Arrow> load(){
@@ -79,26 +76,24 @@ public class Level {
 		for(int i = arrows.size() - 1; i >= 0; i--) {arrows.get(i).update();}
 		score.update(judge.accuracy);
 		combo.update(judge.combo);
+		
+		if(levelTime > endTime) {
+			endLevel();
+		}
 	}
 
 	public void draw(Graphics2D g2d) {
-		if(levelTime <= endTime && playing) {
-			combo.draw(g2d);
-			judge.draw(g2d);
-			leftArrow.draw(g2d);
-			downArrow.draw(g2d);
-			upArrow.draw(g2d);
-			rightArrow.draw(g2d);
-			score.draw(g2d);
-			for(Arrow arrow : arrows) {arrow.draw(g2d);}
-		}else {
-			exitToMenu();
-		}
-		
+		combo.draw(g2d);
+		judge.draw(g2d);
+		leftArrow.draw(g2d);
+		downArrow.draw(g2d);
+		upArrow.draw(g2d);
+		rightArrow.draw(g2d);
+		score.draw(g2d);
+		for(Arrow arrow : arrows) {arrow.draw(g2d);}
 	}
 	
-	public void exitToMenu() {
-		playing = false;
+	public void endLevel() {
 		music.stop();
 		GameState.state = GameState.MENU;
 	}
