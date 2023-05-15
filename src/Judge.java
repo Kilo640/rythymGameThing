@@ -45,7 +45,7 @@ public class Judge extends Entity{
 		this.level = level;
 		judgeIndex = MISS_IMG;
 		judgeImages = new BufferedImage[6];
-		judgeTime = -Integer.MAX_VALUE;
+		judgeTime = Integer.MIN_VALUE;
 		
 		try {
 			judgeImages[MISS_IMG] = ImageIO.read(new File("resources/UI/gameplay/judgments/Miss.png"));
@@ -89,6 +89,25 @@ public class Judge extends Entity{
 			judgeIndex = OK_IMG;
 		}else {
 			combo = 0;
+			judgeIndex = MISS_IMG;
+		}
+		
+		accuracy = 100 * (level.arrowHitWeight/level.numArrows);
+		judgeTime = level.levelTime;
+		return setGrade();
+	}
+	
+	public int judgeArrowTail(double fractionHeld, int duration) {
+		if(fractionHeld >= 0.75 || (duration <= 200 && fractionHeld >= 0.25)) {
+			level.arrowHitWeight++;
+			judgeIndex = MARV_IMG;
+		}else if(fractionHeld >= 0.50) {
+			level.arrowHitWeight += 0.75;
+			judgeIndex = GREAT_IMG;
+		}else if(fractionHeld >= 0.25){
+			level.arrowHitWeight += 0.25;
+			judgeIndex = OK_IMG;
+		}else {
 			judgeIndex = MISS_IMG;
 		}
 		

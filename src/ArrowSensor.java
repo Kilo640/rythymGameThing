@@ -16,6 +16,7 @@ public class ArrowSensor extends Entity {
 	private BufferedImage inactive, active, currImage;
 	private int direction;
 	public boolean isActive;
+	public boolean isHeld;
 	public boolean activeLast;
 	
 	public static final int LEFT = 0;

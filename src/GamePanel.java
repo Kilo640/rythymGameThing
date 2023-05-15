@@ -16,7 +16,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int TILE_SIZE = UNSCALED_TILE_SIZE * SCALE;
 	private final int SCREEN_COLS = 17;
 	private final int SCREEN_ROWS = 13;
-	private final int FPS = 120;
+	public final int FPS = 120;
 	private long startTime = System.currentTimeMillis();
 	private long nextCollection = 1000;
 	

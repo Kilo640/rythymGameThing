@@ -52,14 +52,42 @@ public class Level {
 		}
 		arrows = load();
 		startTime = System.currentTimeMillis();
-		endTime = arrows.get(arrows.size() - 1).time + 2000;
+		int maxEndTime = Integer.MIN_VALUE;
+		
+		for(Arrow arrow : arrows) {
+			int endTime;
+			
+			if(arrow instanceof LongArrow) {
+				endTime = ((LongArrow)arrow).endTime;
+			}else {
+				endTime = arrow.time;
+			}
+			
+			if(maxEndTime < endTime) {maxEndTime = endTime;}
+		}
+		
+		endTime = maxEndTime + 2000;
 	}
 
 	public ArrayList<Arrow> load(){
+		levelLoader.nextLine();
 		ArrayList<Arrow> levelArrows = new ArrayList<Arrow>();
-
+		int laneIndex;
+		int time;
+		int duration;
+		boolean longArrow;
+		
 		while((levelLoader.hasNext())) {
-			levelArrows.add(new Arrow(gp, levelLoader.nextInt(), levelLoader.nextInt(), this, levelArrows));
+			laneIndex = levelLoader.nextInt();
+			time = levelLoader.nextInt();
+			longArrow = levelLoader.nextBoolean();
+			
+			if(longArrow) {
+				duration = levelLoader.nextInt();
+				levelArrows.add(new LongArrow(gp, laneIndex, time, this, levelArrows, duration));
+			}else {
+				levelArrows.add(new Arrow(gp, laneIndex, time, this, levelArrows));
+			}
 		}
 		
 		levelLoader.close();

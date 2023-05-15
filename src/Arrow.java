@@ -8,17 +8,18 @@ import javax.imageio.ImageIO;
 
 public class Arrow extends Entity {
 
-	private GamePanel gp;
-	private BufferedImage arrowImage;
+	protected GamePanel gp;
+	protected BufferedImage arrowImage;
 
 	public int scrollSpeed = 75;
 	public int direction;
 	public int time; // time (milliseconds) after song start that the note should be hit
 	public boolean isActive = true;
+	public boolean isDrawable = true;
 	public long timeFromTarget;
-	private Level level;
-	private Judge judge;
-	Arrow lastArrow;
+	protected Level level;
+	protected Judge judge;
+	protected Arrow lastArrow;
 
 	public Arrow(GamePanel gp, int direction, int time, Level level, ArrayList<Arrow> arrows) {
 		super(0, 0);
@@ -28,23 +29,28 @@ public class Arrow extends Entity {
 		this.level = level;
 		judge = level.judge;
 
-		switch (direction) {
-		case ArrowSensor.LEFT:
-			setImages("Left");
-			break;
-		case ArrowSensor.DOWN:
-			setImages("Down");
-			break;
-		case ArrowSensor.UP:
-			setImages("Up");
-			break;
-		case ArrowSensor.RIGHT:
-			setImages("Right");
-			break;
-		default:
-			System.out.println("BruhSoundEffect3.mp3");
+		try {
+			switch (direction) {
+			case ArrowSensor.LEFT:
+				arrowImage = ImageIO.read(new File("resources/arrows/LeftArrow.png"));
+				break;
+			case ArrowSensor.DOWN:
+				arrowImage = ImageIO.read(new File("resources/arrows/DownArrow.png"));
+				break;
+			case ArrowSensor.UP:
+				arrowImage = ImageIO.read(new File("resources/arrows/UpArrow.png"));
+				break;
+			case ArrowSensor.RIGHT:
+				arrowImage = ImageIO.read(new File("resources/arrows/RightArrow.png"));
+				break;
+			default:
+				System.out.println("BruhSoundEffect3.mp3");
+			}
+		}catch (IOException e) {
+			e.printStackTrace();
 		}
-
+		
+		
 		if (arrows.size() > 0) {
 			Arrow arrow = arrows.get(arrows.size() - 1);
 			for (int i = arrows.size() - 1; i > 0 && arrow.direction != this.direction; i--) {
@@ -57,26 +63,19 @@ public class Arrow extends Entity {
 
 	}
 
-	private void setImages(String direction) {
-		try {
-			arrowImage = ImageIO.read(new File("resources/arrows/" + direction + "Arrow.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public void update() {
-		timeFromTarget = time - level.levelTime;
 		setPosition(arrowX(), arrowY((int)timeFromTarget));
+		timeFromTarget = time - level.levelTime;
 		
 		if (isActive && (lastArrow == null || lastArrow.timeFromTarget < -90 || !lastArrow.isActive)) {
-			if (timeFromTarget < -1 * judge.OK) {
+			if (timeFromTarget < -judge.OK) {
 				isActive = false;
+				isDrawable = false;
 				level.numArrows++;
 				level.grade = judge.judgeHit((int)Math.abs(timeFromTarget));
 				return;
 			}
-
+			
 			switch (direction) {
 			case ArrowSensor.LEFT:
 				checkArrow(level.leftArrow);
@@ -95,29 +94,30 @@ public class Arrow extends Entity {
 			}
 		}
 	}
-
-	private void checkArrow(ArrowSensor sensor) {
+	
+	protected void checkArrow(ArrowSensor sensor) {
 		int deviance = (int)Math.abs(timeFromTarget);
 
 		if (sensor.isActive && deviance < judge.OK && !sensor.activeLast) {
 			isActive = false;
+			isDrawable = false;
 			level.numArrows++;
 			level.grade = judge.judgeHit(deviance);
 		}
 	}
 
 	public void draw(Graphics2D g2d) {
-		if (getY() > -75 && getY() < gp.HEIGHT && isActive) {
+		if (getY() > -75 && getY() < gp.HEIGHT && isDrawable) {
 			g2d.drawImage(arrowImage, getX(), getY(), 
 					(int) (1.5 * gp.TILE_SIZE), (int) (1.5 * gp.TILE_SIZE), null);
 		}
 	}
 
-	private int arrowX() {
+	protected int arrowX() {
 		return gp.TILE_SIZE * (5 + 2 * direction) - level.SHIFT;
 	}
 
-	private int arrowY(int currTime) {
-		return (int) (gp.TILE_SIZE + (1.0 / 60) * scrollSpeed * (timeFromTarget));
+	protected int arrowY(int currTime) {
+		return (int) (gp.TILE_SIZE + (1.0 / 60) * scrollSpeed * (currTime));
 	}
 }
