@@ -12,6 +12,8 @@ public class LongArrow extends Arrow {
 	
 	public int duration;
 	public int endTime;
+	private double lastFrameDuration;
+	private int frames;
 	private double durationHeld;
 	private int length;
 	private boolean availible;
@@ -70,11 +72,13 @@ public class LongArrow extends Arrow {
 				checkLongArrow(level.rightArrow);
 				break;
 			}
+			frames++;
 		}
 		
 		if(!availible && availibleLast) {
 			level.numArrows++;
 			level.grade = judge.judgeArrowTail(durationHeld / duration, duration);
+			isDrawable = false;
 		}
 	}
 	
@@ -83,18 +87,19 @@ public class LongArrow extends Arrow {
 			durationHeld += (1000.0 / gp.FPS);
 			length = (int)((1.0 / 60) * scrollSpeed * (endTime - level.levelTime));
 			setPosition(arrowX(), arrowY(0));
+			lastFrameDuration = (1000.0 / gp.FPS) * frames;
 			isDrawable = true;
+		}else {
+			setPosition(arrowX(), arrowY((int)(timeFromTarget + lastFrameDuration)));
 		}
 	}
 
 	public void draw(Graphics2D g2d) {
 		g2d.drawImage(tailImage, getX(), (int)(getY() + 0.5 * gp.TILE_SIZE),
-				(int)(gp.TILE_SIZE * 1.5), length, null);
+			(int)(gp.TILE_SIZE * 1.5), length, null);
 		g2d.drawImage(tailBoundry, getX(), getY() + length - gp.TILE_SIZE,
-				(int)(gp.TILE_SIZE * 1.5), (int)(gp.TILE_SIZE * 1.5), null);
+			(int)(gp.TILE_SIZE * 1.5), (int)(gp.TILE_SIZE * 1.5), null);
 				
 		super.draw(g2d);
-		
-
 	}
 }

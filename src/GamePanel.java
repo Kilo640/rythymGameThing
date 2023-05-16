@@ -17,8 +17,6 @@ public class GamePanel extends JPanel implements Runnable{
 	private final int SCREEN_COLS = 17;
 	private final int SCREEN_ROWS = 13;
 	public final int FPS = 120;
-	private long startTime = System.currentTimeMillis();
-	private long nextCollection = 1000;
 	
 	//Screen Size: 816x624
 	public final int WIDTH = TILE_SIZE * SCREEN_COLS;
@@ -101,7 +99,8 @@ public class GamePanel extends JPanel implements Runnable{
 				if(currentLevel != null) {currentLevel.draw(g2d);}
 				break;
 		}
-				g2d.dispose();
+		
+		g2d.dispose();
 	}		
 
 }
