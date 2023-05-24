@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int HEIGHT = TILE_SIZE * SCREEN_ROWS;
 	
 	public Controller controller = new Controller();
+	public Settings settings;
 	private Thread gameClock;
 	public Level currentLevel;
 	
@@ -65,16 +66,18 @@ public class GamePanel extends JPanel implements Runnable{
 		switch(GameState.state) {
 			case GameState.MENU:
 				currentLevel = null;
-				if(controller.spaceActive) {
+				if(controller.startActive) {
+					settings.setSettings();
 					GameState.state = GameState.PLAYING;
+					
 				}
 				break;
 			case GameState.PLAYING:
 				if(currentLevel == null) {
-					currentLevel = new Level(this, "testLevel");
+					currentLevel = new Level(this, settings.levelName);
 				}
 				else {currentLevel.update();}
-				if(controller.escActive) {
+				if(controller.escapeActive) {
 					currentLevel.endLevel();
 				}
 				break;
@@ -101,7 +104,6 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 		
 		g2d.dispose();
-	}		
-
+	}
 }
 

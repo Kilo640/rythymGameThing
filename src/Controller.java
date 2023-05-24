@@ -3,7 +3,8 @@ import java.awt.event.KeyListener;
 
 public class Controller implements KeyListener{
 
-	public boolean leftActive, downActive, upActive, rightActive, spaceActive, escActive;
+	public boolean leftActive, downActive, upActive, rightActive, startActive, escapeActive;
+	public int leftArrow, downArrow, upArrow, rightArrow, start, escape;
 	
 	@Override
 	//Unneeded method
@@ -13,24 +14,24 @@ public class Controller implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
-		if(key == KeyEvent.VK_D) {leftActive = true;}
-		if(key == KeyEvent.VK_F) {downActive = true;}
-		if(key == KeyEvent.VK_J) {upActive = true;}
-		if(key == KeyEvent.VK_K) {rightActive = true;}
-		if(key == KeyEvent.VK_SPACE) {spaceActive = true;}
-		if(key == KeyEvent.VK_ESCAPE) {escActive = true;}
+		if(key == leftArrow) {leftActive = true;}
+		if(key == downArrow) {downActive = true;}
+		if(key == upArrow) {upActive = true;}
+		if(key == rightArrow) {rightActive = true;}
+		if(key == start) {startActive = true;}
+		if(key == escape) {escapeActive = true;}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		
-		if(key == KeyEvent.VK_D) {leftActive = false;}
-		if(key == KeyEvent.VK_F) {downActive = false;}
-		if(key == KeyEvent.VK_J) {upActive = false;}
-		if(key == KeyEvent.VK_K) {rightActive = false;}
-		if(key == KeyEvent.VK_SPACE) {spaceActive = false;}
-		if(key == KeyEvent.VK_ESCAPE) {escActive = false;}
+		if(key == leftArrow) {leftActive = false;}
+		if(key == downArrow) {downActive = false;}
+		if(key == upArrow) {upActive = false;}
+		if(key == rightArrow) {rightActive = false;}
+		if(key == start) {startActive = false;}
+		if(key == escape) {escapeActive = false;}
 	}
 
 }

@@ -121,25 +121,25 @@ public class Judge extends Entity{
 		
 		if(accuracy > 99.99) {
 			grade = SSPLUS;
-		}else if(accuracy >= 99) {
+		}else if(accuracy >= 98.995) {
 			grade = SS;
-		}else if(accuracy >= 97) {
+		}else if(accuracy >= 96.995) {
 			grade = SPLUS;
-		}else if(accuracy >= 95) {
+		}else if(accuracy >= 94.995) {
 			grade = S;
-		}else if(accuracy >= 93) {
+		}else if(accuracy >= 92.995) {
 			grade = APLUS;
-		}else if(accuracy >= 87) {
+		}else if(accuracy >= 86.995) {
 			grade = A;
-		}else if(accuracy >= 85) {
+		}else if(accuracy >= 84.995) {
 			grade = BPLUS;
-		}else if(accuracy >= 77) {
+		}else if(accuracy >= 76.995) {
 			grade = B;
-		}else if(accuracy >= 75) {
+		}else if(accuracy >= 74.995) {
 			grade = CPLUS;
-		}else if(accuracy >= 67) {
+		}else if(accuracy >= 66.995) {
 			grade = C;
-		}else if(accuracy >= 60){
+		}else if(accuracy >= 59.995){
 			grade = D;
 		}
 		
