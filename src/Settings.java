@@ -7,6 +7,7 @@ public class Settings {
 	private Scanner settingsFile;
 	private Controller controller;
 	public int scrollSpeed;
+	public int offset;
 	public String levelName = "testLevel";
 	
 	public Settings() {
@@ -71,6 +72,11 @@ public class Settings {
 			str = settingsFile.next();
 		}
 		scrollSpeed = Integer.parseInt(settingsFile.next());
+		
+		while(!str.equals("Offset(ms):")) {
+			str = settingsFile.next();
+		}
+		offset = Integer.parseInt(settingsFile.next());
 		//CURRENT LEVEL
 		while(!str.contains("LEVEL")) {
 			str = settingsFile.nextLine();

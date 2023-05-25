@@ -1,0 +1,1166 @@
+LANE:	TIME:	LONG:	DURATION:
+3	0	true	230
+0	0	true	230
+1	230	false
+2	230	false
+2	923	true	346
+0	1269	false
+0	1615	false
+3	1846	false
+0	2076	false
+0	2192	false
+1	2538	false
+0	2538	false
+3	2769	false
+2	2884	false
+1	2999	false
+0	3115	false
+1	3230	false
+2	3346	false
+3	3461	false
+2	3576	false
+1	3692	false
+0	3923	false
+0	4038	true	346
+3	4384	false
+2	4499	false
+1	4615	true	231
+3	4846	false
+0	4961	true	346
+3	5307	false
+2	5423	false
+1	5538	true	346
+2	5884	true	346
+1	6230	false
+1	6346	false
+3	6461	false
+2	6576	false
+3	6692	false
+2	6807	false
+0	6923	false
+1	7038	false
+0	7153	false
+1	7269	false
+3	7384	true	231
+2	7615	false
+1	7730	true	231
+2	7961	false
+3	8076	false
+2	8192	false
+0	8307	true	231
+1	8538	false
+2	8653	false
+2	8999	false
+1	9115	false
+2	9230	true	231
+1	9461	false
+0	9576	true	347
+1	9923	false
+2	10038	false
+3	10153	false
+2	10269	false
+1	10384	false
+0	10499	false
+1	10615	false
+0	10730	false
+1	10846	false
+0	10961	false
+3	11076	true	347
+2	11423	false
+0	11653	false
+1	11769	false
+2	11884	false
+1	11999	true	231
+2	12230	false
+3	12346	true	346
+2	12692	false
+2	12807	false
+0	12923	true	230
+1	13153	false
+2	13269	true	346
+0	13846	false
+3	13846	false
+1	13961	true	231
+0	14192	false
+2	14307	false
+3	14423	false
+1	14538	true	231
+2	14538	true	231
+0	14769	false
+3	14769	false
+2	14999	false
+1	15115	false
+2	15230	false
+0	15461	false
+3	15692	true	231
+2	15923	false
+1	15980	false
+0	16038	false
+0	16211	false
+1	16269	false
+2	16326	false
+3	16384	true	231
+0	16615	false
+2	16846	false
+1	16961	false
+0	17076	true	231
+3	17307	false
+3	17538	false
+3	17769	true	230
+2	17999	false
+1	18115	false
+0	18346	false
+1	18461	true	231
+2	18692	false
+3	18807	false
+2	18923	false
+2	19153	false
+1	19384	false
+3	19615	false
+2	19673	false
+1	19730	false
+0	19788	false
+2	19961	false
+2	20192	false
+1	20307	true	231
+2	20538	false
+3	20653	false
+2	20769	true	230
+1	20999	true	462
+2	21461	false
+3	21692	false
+2	21807	true	231
+1	22038	false
+0	22153	true	231
+1	22384	false
+2	22499	false
+0	22615	false
+0	22846	true	461
+3	23307	false
+2	23423	false
+2	23538	false
+0	23653	false
+0	23884	false
+1	23999	true	231
+2	24230	false
+3	24346	false
+2	24461	false
+2	24692	false
+1	24923	false
+0	25153	false
+1	25211	false
+2	25269	false
+3	25326	false
+3	25499	false
+2	25557	false
+1	25615	false
+0	25673	false
+2	25846	true	346
+1	26192	false
+0	26307	false
+1	26538	true	461
+2	26999	false
+3	27115	false
+2	27346	false
+1	27692	false
+2	27807	false
+3	27923	false
+2	28038	false
+1	28153	false
+2	28269	false
+1	28384	false
+2	28499	false
+0	28615	true	461
+3	28615	true	461
+2	29076	true	462
+1	29076	true	462
+0	29538	false
+3	29538	false
+1	29769	false
+2	29884	false
+1	30000	false
+3	30231	false
+0	30461	true	231
+1	30692	false
+2	30750	false
+3	30807	false
+3	30980	false
+2	31038	false
+1	31096	false
+0	31154	true	230
+3	31384	false
+1	31615	false
+2	31731	false
+3	31846	true	231
+0	32077	false
+0	32307	false
+0	32538	true	231
+1	32769	false
+2	32884	false
+3	33115	false
+2	33231	true	230
+1	33461	false
+0	33577	false
+1	33692	false
+1	33923	false
+2	34154	false
+0	34384	false
+1	34442	false
+2	34500	false
+3	34557	false
+1	34731	false
+1	34961	false
+2	35077	true	230
+1	35307	false
+0	35423	false
+1	35538	true	231
+2	35769	true	462
+1	36231	false
+0	36461	false
+1	36577	true	230
+2	36807	false
+3	36923	true	231
+2	37154	false
+1	37269	false
+3	37384	false
+3	37615	true	462
+0	38077	false
+1	38307	false
+2	38423	false
+3	38538	false
+2	38769	true	231
+1	39000	false
+0	39115	false
+1	39231	false
+1	39461	false
+2	39692	false
+3	39923	false
+2	39981	false
+1	40038	false
+0	40096	false
+0	40269	false
+1	40327	false
+2	40384	false
+3	40442	false
+1	40615	true	346
+2	40961	false
+3	41077	false
+2	41307	false
+1	41769	false
+2	41884	false
+1	42115	false
+2	42461	false
+1	42577	false
+0	42692	false
+1	42807	false
+2	42923	false
+1	43038	false
+2	43154	false
+1	43269	false
+3	43384	true	462
+0	43384	true	462
+1	43846	true	461
+2	43846	true	461
+3	44307	false
+0	44307	false
+2	44538	true	231
+1	44769	true	230
+3	44999	false
+2	45115	false
+0	45230	false
+1	45461	false
+2	45576	true	347
+0	45923	true	461
+2	47538	false
+1	47769	false
+3	47999	false
+3	48115	false
+3	48230	false
+1	48461	true	231
+2	48692	true	461
+1	49153	false
+0	49269	false
+3	49384	true	231
+2	49615	true	231
+1	49846	false
+0	49961	false
+1	50076	false
+3	50192	true	346
+2	50538	true	461
+1	51230	false
+0	51461	false
+1	51576	false
+2	51692	false
+1	51923	true	230
+3	52153	true	231
+0	52384	false
+1	52499	false
+3	52615	true	231
+2	52846	false
+1	52961	false
+0	53076	true	231
+1	53307	true	692
+2	53307	true	692
+2	54923	true	230
+1	55153	false
+0	55269	false
+1	55384	true	231
+2	55615	true	461
+1	56076	true	462
+2	56538	false
+1	56653	false
+0	56769	false
+3	56769	false
+3	56999	false
+0	56999	false
+0	57346	true	461
+3	57346	true	461
+1	57807	true	404
+2	57807	true	404
+0	59076	false
+3	59076	false
+2	59307	true	231
+1	59538	true	231
+0	59769	true	230
+2	59999	false
+3	60230	false
+2	60346	false
+1	60692	true	461
+3	62538	false
+2	62653	false
+0	62769	true	230
+1	62999	true	462
+3	63461	false
+3	63576	false
+3	63692	false
+3	63807	false
+3	63923	false
+0	64153	false
+1	64269	false
+2	64384	true	231
+1	64615	true	461
+2	65076	true	462
+1	65538	false
+1	65769	false
+0	65884	false
+1	65999	false
+1	66230	false
+2	66692	true	231
+0	66923	true	230
+3	67153	true	231
+1	67384	true	231
+2	67615	true	231
+0	67846	true	230
+3	67846	true	230
+1	68076	true	462
+2	68076	true	462
+3	69923	false
+2	70038	false
+0	70153	false
+1	70269	false
+3	70384	false
+2	70499	false
+1	70615	false
+1	70846	true	461
+2	71307	false
+2	71538	false
+3	71769	false
+2	71999	false
+1	72115	false
+0	72230	false
+1	72346	false
+2	72461	false
+3	72692	true	692
+0	72692	true	692
+0	73846	true	115
+2	73846	true	115
+1	74076	false
+3	74192	false
+1	74307	false
+0	74538	false
+2	74538	false
+3	74769	false
+0	75000	false
+0	75231	false
+2	75461	true	231
+3	75461	true	231
+0	75923	true	231
+1	76154	true	230
+2	76384	true	231
+3	76615	true	231
+1	76846	false
+3	77077	false
+0	77077	false
+1	77307	true	231
+2	77307	true	231
+3	77769	false
+0	78000	false
+2	78231	false
+1	78461	false
+0	78577	false
+1	78692	false
+3	78923	false
+0	79154	false
+0	79269	false
+0	79384	false
+3	79615	false
+0	79846	false
+1	79961	false
+2	80077	true	230
+0	80307	false
+1	80538	true	462
+3	81461	false
+2	81576	false
+0	81692	false
+0	81923	false
+2	82153	true	693
+1	82384	true	462
+0	82615	true	231
+3	82846	false
+3	83076	false
+1	83076	false
+2	83307	false
+0	83307	false
+2	83538	false
+0	83538	false
+1	83769	true	692
+3	83769	true	692
+0	85153	false
+1	85269	false
+3	85384	false
+0	85615	false
+3	85846	true	461
+2	86076	true	231
+0	86538	false
+1	86653	false
+0	86769	false
+1	86884	false
+0	86999	true	231
+3	87461	false
+2	87577	false
+3	87692	false
+2	87807	false
+3	87923	true	230
+0	88615	true	115
+2	88615	true	115
+1	88846	false
+3	88961	false
+1	89077	false
+0	89307	false
+2	89307	false
+3	89538	false
+0	89769	false
+0	90000	false
+2	90230	true	231
+3	90230	true	231
+0	90692	true	231
+1	90923	true	230
+2	91153	true	231
+3	91384	true	231
+1	91615	false
+3	91846	false
+0	91846	false
+1	92077	true	230
+2	92077	true	230
+3	92538	false
+0	92769	false
+2	93000	false
+1	93230	false
+0	93346	false
+1	93461	false
+3	93692	false
+0	93923	false
+0	94038	false
+0	94153	false
+3	94384	false
+0	94615	false
+1	94730	false
+2	94846	true	231
+0	95077	false
+1	95307	true	462
+3	96230	false
+2	96346	false
+0	96461	false
+0	96692	false
+2	96923	true	692
+1	97153	true	462
+0	97384	true	231
+3	97615	false
+3	97846	false
+1	97846	false
+2	98077	false
+0	98077	false
+2	98307	false
+0	98307	false
+1	98538	true	692
+3	98538	true	692
+0	99923	false
+1	100038	false
+3	100153	false
+0	100384	false
+3	100615	true	462
+2	100846	true	231
+0	101307	false
+1	101423	false
+0	101538	false
+1	101653	false
+0	101769	true	231
+3	102230	false
+2	102346	false
+3	102461	false
+2	102577	false
+3	102692	true	231
+0	103384	true	231
+1	103615	false
+2	103730	true	231
+1	103961	false
+0	104076	false
+1	104307	true	231
+2	104538	false
+3	104653	true	231
+2	104884	false
+1	104999	false
+1	105230	false
+1	105461	false
+0	105576	true	231
+1	105807	false
+2	105923	false
+1	106153	true	231
+2	106384	false
+3	106499	true	231
+2	106730	false
+1	106846	false
+0	107076	true	231
+1	107307	false
+2	107423	false
+2	107653	false
+1	107769	true	230
+0	107999	false
+2	108230	false
+2	108346	false
+2	108576	false
+2	108692	true	231
+1	108923	false
+0	109153	false
+1	109269	false
+2	109499	false
+1	109615	false
+2	109846	true	230
+1	110076	false
+0	110192	false
+2	110423	false
+1	110538	true	231
+3	110769	true	230
+2	110999	false
+1	111115	true	231
+2	111346	false
+3	111461	false
+2	111692	true	231
+1	111923	false
+0	112038	true	231
+1	112269	false
+2	112384	false
+2	112615	false
+2	112846	false
+3	112961	true	231
+2	113192	false
+1	113307	false
+2	113538	true	231
+1	113769	false
+0	113884	true	231
+1	114115	false
+2	114230	false
+3	114461	true	231
+2	114692	false
+1	114807	false
+1	115038	false
+2	115153	true	231
+3	115384	false
+1	115615	false
+1	115730	false
+1	115961	false
+1	116076	true	231
+2	116307	false
+3	116538	false
+2	116653	false
+1	116884	false
+2	116999	false
+2	117230	false
+1	117346	false
+0	117461	false
+3	117576	false
+2	117634	false
+1	117692	false
+0	117807	false
+1	117865	false
+2	117923	true	230
+0	118153	false
+3	118153	false
+2	118384	false
+3	118499	false
+0	118615	false
+0	118846	false
+1	119076	true	231
+2	119307	false
+3	119423	false
+3	119653	false
+2	119769	true	230
+1	119999	false
+0	120115	false
+1	120230	false
+2	120346	false
+2	120576	false
+1	120692	true	231
+2	120923	false
+3	121038	false
+2	121153	false
+1	121269	false
+0	121499	false
+1	121615	false
+2	121730	false
+0	121846	true	230
+1	122076	false
+2	122192	false
+3	122307	false
+0	122538	false
+1	122653	false
+1	122884	false
+0	122999	false
+0	123230	false
+1	123346	true	230
+2	123692	true	231
+1	123923	true	230
+0	124153	true	231
+1	124384	true	231
+2	124615	false
+3	124730	false
+2	124846	false
+1	125076	false
+0	125076	false
+3	125307	false
+2	125538	true	231
+1	125769	false
+0	125884	false
+1	125999	false
+2	126230	false
+3	126461	false
+2	126576	false
+1	126692	true	231
+2	126923	false
+3	127038	false
+2	127269	false
+3	127384	true	231
+2	127615	false
+1	127730	false
+0	127961	false
+1	128076	false
+3	128307	false
+2	128423	false
+1	128538	false
+0	128653	false
+1	128884	false
+2	128999	true	231
+0	129230	true	231
+3	129230	true	231
+1	129461	false
+2	129576	true	231
+0	129807	false
+1	129923	true	230
+2	130153	false
+2	130384	false
+1	130499	false
+1	130730	false
+2	130846	false
+0	131076	false
+1	131134	false
+2	131192	false
+3	131249	false
+0	131423	false
+2	131538	false
+1	131769	false
+0	131884	false
+2	132115	false
+1	132230	false
+3	132346	false
+2	132461	false
+3	132576	false
+2	132692	true	231
+1	132692	true	231
+0	132923	false
+3	132923	false
+1	133154	false
+2	133270	false
+1	133385	false
+3	133616	false
+0	133846	true	231
+1	134077	false
+2	134135	false
+3	134193	false
+3	134365	false
+2	134423	false
+1	134481	false
+0	134539	true	231
+3	134770	false
+1	135000	false
+2	135116	false
+3	135231	true	231
+0	135462	false
+0	135693	false
+0	135923	true	231
+1	136154	false
+2	136270	false
+3	136500	false
+2	136616	true	230
+1	136846	false
+0	136962	false
+1	137077	false
+1	137308	false
+2	137539	false
+0	137770	false
+1	137827	false
+2	137885	false
+3	137943	false
+1	138116	false
+1	138346	false
+2	138462	true	231
+1	138693	false
+0	138808	false
+1	138923	true	231
+2	139154	true	462
+1	139616	false
+0	139846	false
+1	139962	true	231
+2	140193	false
+3	140308	true	231
+2	140539	false
+1	140654	false
+3	140770	false
+3	141000	true	462
+0	141462	false
+1	141693	false
+2	141808	false
+3	141923	false
+2	142154	true	231
+1	142385	false
+0	142500	false
+1	142616	false
+1	142846	false
+2	143077	false
+3	143308	false
+2	143366	false
+1	143423	false
+0	143481	false
+0	143654	false
+1	143712	false
+2	143770	false
+3	143827	false
+1	144000	true	346
+2	144346	false
+3	144462	false
+2	144693	false
+1	145153	false
+2	145269	false
+1	145499	false
+2	145846	false
+1	145962	false
+0	146077	false
+1	146193	false
+2	146308	false
+1	146423	false
+2	146539	false
+1	146654	false
+3	146770	true	461
+0	146770	true	461
+1	147231	true	462
+2	147231	true	462
+3	147693	false
+0	147693	false
+2	147923	false
+1	148039	false
+2	148154	false
+0	148385	false
+3	148616	true	230
+2	148846	false
+1	148904	false
+0	148962	false
+0	149134	false
+1	149193	false
+2	149250	false
+3	149308	true	231
+0	149539	false
+2	149770	false
+1	149885	false
+0	150000	true	231
+3	150231	false
+3	150462	false
+3	150693	true	230
+2	150923	false
+1	151039	false
+0	151270	false
+1	151385	true	231
+2	151616	false
+3	151731	false
+2	151846	false
+2	152077	false
+1	152308	false
+3	152539	false
+2	152596	false
+1	152654	false
+0	152712	false
+2	152885	false
+2	153116	false
+1	153231	true	231
+2	153462	false
+3	153577	false
+2	153693	true	230
+1	153923	true	462
+2	154385	false
+3	154616	false
+2	154731	true	231
+1	154962	false
+0	155077	true	231
+1	155308	false
+2	155423	false
+0	155539	false
+0	155770	true	461
+3	156231	false
+2	156462	false
+1	156577	false
+0	156693	false
+1	156923	true	231
+2	157154	false
+3	157270	false
+2	157385	false
+2	157616	false
+1	157846	false
+0	158077	false
+1	158135	false
+2	158193	false
+3	158250	false
+3	158423	false
+2	158481	false
+1	158539	false
+0	158596	false
+2	158770	true	346
+1	159116	false
+0	159231	false
+1	159462	false
+1	159923	false
+2	160038	false
+2	160269	false
+1	160616	false
+2	160731	false
+3	160846	false
+2	160962	false
+1	161077	false
+2	161193	false
+1	161308	false
+2	161423	false
+0	161539	true	461
+3	161539	true	461
+2	162000	true	462
+1	162000	true	462
+0	162461	false
+3	162461	false
+1	162692	true	230
+2	162922	true	231
+0	163153	false
+1	163269	false
+3	163384	false
+2	163615	false
+1	163730	true	346
+3	164076	true	462
+1	165692	false
+2	165922	false
+0	166153	false
+0	166269	false
+0	166384	false
+2	166615	true	231
+1	166846	true	461
+2	167307	false
+3	167422	false
+0	167538	true	231
+1	167769	true	230
+2	167999	false
+3	168115	false
+2	168230	false
+0	168346	true	346
+1	168692	true	461
+2	169384	false
+3	169615	false
+2	169730	false
+1	169846	false
+2	170076	true	231
+0	170307	true	231
+3	170538	false
+2	170653	false
+0	170769	true	230
+1	170999	false
+2	171115	false
+3	171230	true	231
+2	171461	true	692
+1	171461	true	692
+1	173076	true	231
+2	173307	false
+3	173422	false
+2	173538	true	231
+1	173769	true	461
+2	174230	true	462
+1	174692	false
+2	174807	false
+3	174922	false
+0	174922	false
+0	175153	false
+3	175153	false
+3	175499	true	462
+0	175499	true	462
+2	175961	true	404
+1	175961	true	404
+3	177230	false
+0	177230	false
+1	177461	true	231
+2	177692	true	230
+3	177922	true	231
+1	178153	false
+0	178384	false
+1	178499	false
+2	178846	true	461
+0	180692	false
+1	180807	false
+3	180922	true	231
+2	181153	true	462
+0	181615	false
+0	181730	false
+0	181846	false
+0	181961	false
+0	182076	false
+3	182307	false
+2	182422	false
+1	182538	true	231
+2	182769	true	461
+1	183230	true	462
+2	183692	false
+2	183922	false
+3	184038	false
+2	184153	false
+2	184384	false
+1	184846	true	230
+3	185076	true	231
+0	185307	true	231
+2	185538	true	231
+1	185769	true	230
+3	185999	true	231
+0	185999	true	231
+2	186230	true	462
+1	186230	true	462
+0	188076	false
+1	188192	false
+3	188307	false
+2	188422	false
+0	188538	false
+1	188653	false
+2	188769	false
+2	188999	true	462
+1	189461	false
+1	189692	false
+0	189922	false
+1	190153	false
+2	190269	false
+3	190384	false
+2	190499	false
+1	190615	false
+0	190846	true	692
+3	190846	true	692
+0	191999	false
+3	191999	false
+2	192230	false
+2	192346	false
+0	192461	false
+2	192692	false
+1	192923	true	230
+3	193153	true	231
+0	193384	true	231
+2	193615	true	461
+1	194076	false
+0	194307	false
+0	194538	false
+1	194769	false
+1	194884	false
+3	194999	false
+1	195230	false
+1	195461	false
+2	196038	false
+0	196153	false
+1	196269	false
+2	196384	false
+1	196499	false
+3	196615	true	461
+2	196846	true	230
+0	197307	true	462
+1	197769	true	461
+2	198230	true	462
+0	198692	true	461
+2	199615	false
+0	199730	false
+1	199846	false
+0	200076	false
+2	200307	true	231
+3	200538	true	231
+1	200769	false
+1	200999	false
+0	201230	false
+0	201461	false
+3	201692	false
+3	201923	false
+1	203307	false
+0	203423	false
+1	203538	false
+2	203769	false
+3	203999	false
+3	204230	false
+0	204692	true	461
+1	205153	true	462
+3	205615	true	461
+2	206076	true	462
+3	206769	true	115
+1	206769	true	115
+2	207000	false
+0	207115	false
+2	207231	false
+3	207461	false
+1	207461	false
+0	207692	false
+3	207923	false
+3	208154	false
+1	208384	true	231
+0	208384	true	231
+3	208846	true	231
+2	209077	true	230
+1	209307	true	231
+0	209538	true	231
+2	209769	false
+0	210000	false
+3	210000	false
+2	210231	true	230
+1	210231	true	230
+0	210692	false
+3	210923	false
+1	211154	false
+2	211384	false
+3	211500	false
+2	211615	false
+0	211846	false
+3	212077	false
+3	212192	false
+3	212307	false
+0	212538	false
+3	212769	false
+2	212884	false
+1	213000	true	231
+3	213231	false
+2	213461	true	462
+0	214384	false
+1	214500	false
+3	214615	false
+3	214846	false
+1	215077	true	692
+2	215307	true	462
+3	215538	true	231
+0	215769	false
+0	216000	false
+2	216000	false
+1	216231	false
+3	216231	false
+1	216461	false
+3	216461	false
+2	216692	true	692
+0	216692	true	692
+3	218077	false
+2	218192	false
+0	218307	false
+3	218538	false
+0	218769	true	462
+1	219000	true	231
+3	219461	false
+2	219577	false
+3	219692	false
+2	219807	false
+3	219923	true	231
+0	220384	false
+1	220500	false
+0	220615	false
+1	220731	false
+0	220846	true	231
+3	221538	true	116
+1	221538	true	116
+2	221769	false
+0	221884	false
+2	222000	false
+3	222231	false
+1	222231	false
+0	222461	false
+3	222692	false
+3	222923	false
+1	223154	true	230
+0	223154	true	230
+3	223615	true	231
+2	223846	true	231
+1	224077	true	230
+0	224307	true	231
+2	224538	false
+0	224769	false
+3	224769	false
+2	225000	true	231
+1	225000	true	231
+0	225461	false
+3	225692	false
+1	225923	false
+2	226154	false
+3	226269	false
+2	226384	false
+0	226615	false
+3	226846	false
+3	226961	false
+3	227077	false
+0	227307	false
+3	227538	false
+2	227654	false
+1	227769	true	231
+3	228000	false
+2	228231	true	461
+0	229154	false
+1	229269	false
+3	229384	false
+3	229615	false
+1	229846	true	692
+2	230077	true	461
+3	230307	true	231
+0	230538	false
+0	230769	false
+2	230769	false
+1	231000	false
+3	231000	false
+1	231231	false
+3	231231	false
+2	231461	true	693
+0	231461	true	693
+3	232846	false
+2	232961	false
+0	233077	false
+3	233307	false
+0	233538	true	462
+1	233769	true	231
+3	234231	false
+2	234288	false
+1	234346	false
+0	234403	false
+3	234461	false
+1	234576	false
+3	234692	true	231
+0	235153	false
+1	235211	false
+2	235269	false
+3	235326	false
+0	235384	false
+2	235499	false
+0	235615	true	231

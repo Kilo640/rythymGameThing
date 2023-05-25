@@ -84,9 +84,10 @@ public class Level {
 			
 			if(longArrow) {
 				duration = levelLoader.nextInt();
-				levelArrows.add(new LongArrow(gp, laneIndex, time, this, levelArrows, duration));
+				levelArrows.add(new LongArrow(gp, laneIndex, time + gp.settings.offset,
+						this, levelArrows, duration));
 			}else {
-				levelArrows.add(new Arrow(gp, laneIndex, time, this, levelArrows));
+				levelArrows.add(new Arrow(gp, laneIndex, time + gp.settings.offset, this, levelArrows));
 			}
 		}
 		
