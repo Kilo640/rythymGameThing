@@ -71,7 +71,7 @@ public class Arrow extends Entity {
 			if (timeFromTarget < -judge.OK) {
 				isActive = false;
 				isDrawable = false;
-				level.numArrows++;
+				level.numHits++;
 				level.grade = judge.judgeHit((int)Math.abs(timeFromTarget));
 				return;
 			}
@@ -101,7 +101,7 @@ public class Arrow extends Entity {
 		if (sensor.isActive && deviance < judge.OK && !sensor.activeLast) {
 			isActive = false;
 			isDrawable = false;
-			level.numArrows++;
+			level.numHits++;
 			level.grade = judge.judgeHit(deviance);
 		}
 	}

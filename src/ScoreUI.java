@@ -12,10 +12,11 @@ public class ScoreUI extends Entity {
 	private BufferedImage tenths;
 	private BufferedImage hundreths;
 	public static BufferedImage[] digitImages;
+	public String accuracyString;
 	private BufferedImage[] grades;
 	private BufferedImage point;
 	private BufferedImage percent;
-	private BufferedImage grade;
+	public BufferedImage grade;
 	
 	private Level level;
 	private GamePanel gp;
@@ -28,10 +29,10 @@ public class ScoreUI extends Entity {
 		grades = new BufferedImage[12];
 		
 		try {
-			point = ImageIO.read(new File("resources/UI/gameplay/digits/..png"));
-			percent = ImageIO.read(new File("resources/UI/gameplay/digits/%.png"));
+			point = ImageIO.read(new File("resources/UI/characters/..png"));
+			percent = ImageIO.read(new File("resources/UI/characters/%.png"));
 			for(int i = 0; i < digitImages.length; i++) {
-				digitImages[i] = ImageIO.read(new File("resources/UI/gameplay/digits/" + i + ".png"));
+				digitImages[i] = ImageIO.read(new File("resources/UI/characters/" + i + ".png"));
 			}
 			grades[0] = ImageIO.read(new File("resources/UI/gameplay/grades/F.png"));
 			grades[1] = ImageIO.read(new File("resources/UI/gameplay/grades/D.png"));
@@ -84,6 +85,8 @@ public class ScoreUI extends Entity {
 		tenths = digitImages[tenth];
 		hundreths = digitImages[hundreth];
 		grade = grades[level.grade];
+		
+		accuracyString = "" + hundred + ten + one + '.' + tenth + hundreth + '%';
 	}
 
 	public void draw(Graphics2D g2d) {

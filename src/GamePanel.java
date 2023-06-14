@@ -2,11 +2,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -26,6 +22,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public Settings settings;
 	private Thread gameClock;
 	public Level currentLevel;
+	public ResultsScreen results;
+	public TextDrawer writer = new TextDrawer();
 	
 	public GamePanel() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -64,45 +62,41 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public void update() {
 		switch(GameState.state) {
-			case GameState.MENU:
-				currentLevel = null;
-				if(controller.startActive) {
-					settings.setSettings();
-					GameState.state = GameState.PLAYING;
-					
-				}
-				break;
-			case GameState.PLAYING:
-				if(currentLevel == null) {
-					currentLevel = new Level(this, settings.levelName);
-				}
-				else {currentLevel.update();}
-				if(controller.escapeActive) {
-					currentLevel.endLevel();
-				}
-				break;
+		case GameState.MENU:
+			currentLevel = null;
+			if(controller.startActive) {
+				settings.setSettings();
+				GameState.state = GameState.PLAYING;
+			}
+			break;
+		case GameState.PLAYING:
+			if(currentLevel == null) {currentLevel = new Level(this, settings.levelName);}
+			else {currentLevel.update();}
+			if(controller.escapeActive) {currentLevel.endLevel(GameState.MENU);}
+			break;
+		case GameState.RESULTS:
+			//results.update();
+			if(controller.escapeActive) {GameState.state = GameState.MENU;}
 		}
-	}
+	}	
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
-		
+	
 		switch(GameState.state) {
 			case GameState.MENU:
-			try {
-				BufferedImage menu = ImageIO.read(new File("resources/UI/menu/pressSpace.png"));
-				g2d.drawImage(menu, 300, 250,
-						5 * menu.getWidth(), 5 * menu.getHeight(), null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+				writer.draw("Press " + settings.startKey + " to start", 1, 100, 250, g2d);
+				writer.draw("Current Level:", 0.75, 5, 535, g2d);
+				writer.draw(settings.levelName, 0.75, 5, 585, g2d);
 				break;
 			case GameState.PLAYING:
 				if(currentLevel != null) {currentLevel.draw(g2d);}
 				break;
-		}
-		
+			case GameState.RESULTS:
+				results.draw(g2d);
+			}
+	
 		g2d.dispose();
 	}
 }

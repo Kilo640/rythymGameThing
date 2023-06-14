@@ -10,7 +10,15 @@ public class Judge extends Entity{
 	private Level level;
 	public int judgeIndex;
 	public int combo;
+	public int maxCombo;
 	private long judgeTime;
+	public int ok;
+	public int good;
+	public int great;
+	public int perfect;
+	public int marvelous;
+	public int miss;
+	
 	private BufferedImage[] judgeImages;
 	//Judgment windows (milliseconds)
 	public final int OK = 180;
@@ -70,34 +78,42 @@ public class Judge extends Entity{
 		if(deviance <= MARVELOUS) {
 			level.arrowHitWeight++;
 			combo++;
+			marvelous++;
 			judgeIndex = MARV_IMG;
 		}else if(deviance <= PERFECT) {
 			level.arrowHitWeight += 0.98;
+			perfect++;
 			combo++;
 			judgeIndex = PERF_IMG;
 		}else if(deviance <= GREAT) {
 			level.arrowHitWeight += 0.75;
+			great++;
 			combo++;
 			judgeIndex = GREAT_IMG;
 		}else if(deviance <= GOOD) {
 			level.arrowHitWeight += 0.50;
+			good++;
 			combo = 0;
 			judgeIndex = GOOD_IMG;
 		}else if(deviance <= OK){
 			level.arrowHitWeight += 0.25;
+			ok++;
 			combo = 0;
 			judgeIndex = OK_IMG;
 		}else {
+			miss++;
 			combo = 0;
 			judgeIndex = MISS_IMG;
 		}
 		
-		accuracy = 100 * (level.arrowHitWeight/level.numArrows);
+		if(maxCombo < combo) {maxCombo = combo;}
+		
+		accuracy = 100 * (level.arrowHitWeight/level.numHits);
 		judgeTime = level.levelTime;
 		return setGrade();
 	}
 	
-	public int judgeArrowTail(double fractionHeld, int duration) {
+	public int judgeLongNote(double fractionHeld, int duration) {
 		if(fractionHeld >= 0.75 || (duration <= 200 && fractionHeld >= 0.25)) {
 			level.arrowHitWeight++;
 			judgeIndex = MARV_IMG;
@@ -111,7 +127,7 @@ public class Judge extends Entity{
 			judgeIndex = MISS_IMG;
 		}
 		
-		accuracy = 100 * (level.arrowHitWeight/level.numArrows);
+		accuracy = 100 * (level.arrowHitWeight/level.numHits);
 		judgeTime = level.levelTime;
 		return setGrade();
 	}

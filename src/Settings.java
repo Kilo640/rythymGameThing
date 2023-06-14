@@ -9,6 +9,8 @@ public class Settings {
 	public int scrollSpeed;
 	public int offset;
 	public String levelName = "testLevel";
+	public String exitKey;
+	public String startKey;
 	
 	public Settings() {
 		controller = Main.game.controller;
@@ -32,12 +34,14 @@ public class Settings {
 			str = settingsFile.next();
 		}
 		key = settingsFile.next();
+		exitKey = key;
 		controller.escape = findKey(key);
 		
 		while(!str.equals("Start_button:")) {
 			str = settingsFile.next();
 		}
 		key = settingsFile.next();
+		startKey = key;
 		controller.start = findKey(key);
 		
 		while(!str.equals("Left_arrow:")) {

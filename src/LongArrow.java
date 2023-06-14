@@ -76,8 +76,8 @@ public class LongArrow extends Arrow {
 		}
 		
 		if(!availible && availibleLast) {
-			level.numArrows++;
-			level.grade = judge.judgeArrowTail(durationHeld / duration, duration);
+			level.numHits++;
+			level.grade = judge.judgeLongNote(durationHeld / duration, duration);
 			isDrawable = false;
 		}
 	}

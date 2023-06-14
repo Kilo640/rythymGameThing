@@ -20,11 +20,13 @@ public class Level {
 	public ArrowSensor downArrow;
 	public ArrowSensor upArrow;
 	public ArrowSensor rightArrow;
-	public int numArrows;
+	public int numHits;
+	public boolean fc = false;
+	public boolean sdcb = false;
 	public double arrowHitWeight; //Judgment based "weight" of how many arrows are hit
 	public Judge judge;
 	public int grade;
-	private ScoreUI score;
+	public ScoreUI score;
 	private ComboCounter combo;
 	
 	public final int SHIFT = 12;
@@ -107,7 +109,7 @@ public class Level {
 		combo.update(judge.combo);
 		
 		if(levelTime > endTime) {
-			endLevel();
+			endLevel(GameState.RESULTS);
 		}
 	}
 
@@ -122,8 +124,14 @@ public class Level {
 		for(Arrow arrow : arrows) {arrow.draw(g2d);}
 	}
 	
-	public void endLevel() {
+	public void endLevel(int state) {
+		if(judge.maxCombo == arrows.size()) {fc = true;}
+		else if(judge.miss + judge.ok + judge.good < 10) {sdcb = true;}
+		System.out.println();
+		System.out.println();
 		music.stop();
-		GameState.state = GameState.MENU;
+		
+		if(state == GameState.RESULTS) {gp.results = new ResultsScreen(this);}
+		GameState.state = state;
 	}
 }
