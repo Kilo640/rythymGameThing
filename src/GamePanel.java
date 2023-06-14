@@ -24,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public Level currentLevel;
 	public ResultsScreen results;
 	public TextDrawer writer = new TextDrawer();
+	public Menu menu = new Menu();
 	
 	public GamePanel() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -63,19 +64,14 @@ public class GamePanel extends JPanel implements Runnable{
 	public void update() {
 		switch(GameState.state) {
 		case GameState.MENU:
-			currentLevel = null;
-			if(controller.startActive) {
-				settings.setSettings();
-				GameState.state = GameState.PLAYING;
-			}
+			menu.update();
 			break;
 		case GameState.PLAYING:
-			if(currentLevel == null) {currentLevel = new Level(this, settings.levelName);}
+			if(currentLevel == null) {currentLevel = new Level(this, menu.levelNames[menu.selectedLevel]);}
 			else {currentLevel.update();}
 			if(controller.escapeActive) {currentLevel.endLevel(GameState.MENU);}
 			break;
 		case GameState.RESULTS:
-			//results.update();
 			if(controller.escapeActive) {GameState.state = GameState.MENU;}
 		}
 	}	
@@ -86,9 +82,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 		switch(GameState.state) {
 			case GameState.MENU:
-				writer.draw("Press " + settings.startKey + " to start", 1, 100, 250, g2d);
-				writer.draw("Current Level:", 0.75, 5, 535, g2d);
-				writer.draw(settings.levelName, 0.75, 5, 585, g2d);
+				menu.draw(g2d);
 				break;
 			case GameState.PLAYING:
 				if(currentLevel != null) {currentLevel.draw(g2d);}

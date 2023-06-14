@@ -8,7 +8,6 @@ public class Settings {
 	private Controller controller;
 	public int scrollSpeed;
 	public int offset;
-	public String levelName = "testLevel";
 	public String exitKey;
 	public String startKey;
 	
@@ -43,6 +42,18 @@ public class Settings {
 		key = settingsFile.next();
 		startKey = key;
 		controller.start = findKey(key);
+		
+		while(!str.equals("Up_Selection:")) {
+			str = settingsFile.next();
+		}
+		key = settingsFile.next();
+		controller.up = findKey(key);
+		
+		while(!str.equals("Down_Selection:")) {
+			str = settingsFile.next();
+		}
+		key = settingsFile.next();
+		controller.down = findKey(key);
 		
 		while(!str.equals("Left_arrow:")) {
 			str = settingsFile.next();
@@ -81,16 +92,6 @@ public class Settings {
 			str = settingsFile.next();
 		}
 		offset = Integer.parseInt(settingsFile.next());
-		//CURRENT LEVEL
-		while(!str.contains("LEVEL")) {
-			str = settingsFile.nextLine();
-		}
-		
-		while(!str.equals("Level_name:")) {
-			str = settingsFile.next();
-		}
-		str = settingsFile.next();
-		levelName = str.substring(1, str.length() - 1);
 	}
 	
 	private int findKey(String key) {

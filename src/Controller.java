@@ -4,7 +4,8 @@ import java.awt.event.KeyListener;
 public class Controller implements KeyListener{
 
 	public boolean leftActive, downActive, upActive, rightActive, startActive, escapeActive;
-	public int leftArrow, downArrow, upArrow, rightArrow, start, escape;
+	public boolean upSelection, downSelection;
+	public int leftArrow, downArrow, upArrow, rightArrow, start, escape, up, down;
 	
 	@Override
 	//Unneeded method
@@ -20,6 +21,8 @@ public class Controller implements KeyListener{
 		if(key == rightArrow) {rightActive = true;}
 		if(key == start) {startActive = true;}
 		if(key == escape) {escapeActive = true;}
+		if(key == up) {upSelection = true;}
+		if(key == down) {downSelection = true;}
 	}
 
 	@Override
@@ -32,6 +35,8 @@ public class Controller implements KeyListener{
 		if(key == rightArrow) {rightActive = false;}
 		if(key == start) {startActive = false;}
 		if(key == escape) {escapeActive = false;}
+		if(key == up) {upSelection = false;}
+		if(key == down) {downSelection = false;}
 	}
 
 }
