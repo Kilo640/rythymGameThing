@@ -62,7 +62,9 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void update() {
-		switch(GameState.state) {
+		menu.escapeHeldLast = menu.escapeThisFrame;
+		menu.escapeThisFrame = Main.game.controller.escapeActive;switch(GameState.state) {
+		
 		case GameState.MENU:
 			menu.update();
 			break;
@@ -73,6 +75,7 @@ public class GamePanel extends JPanel implements Runnable{
 			break;
 		case GameState.RESULTS:
 			if(controller.escapeActive) {GameState.state = GameState.MENU;}
+			break;
 		}
 	}	
 	
@@ -89,6 +92,7 @@ public class GamePanel extends JPanel implements Runnable{
 				break;
 			case GameState.RESULTS:
 				results.draw(g2d);
+				break;
 			}
 	
 		g2d.dispose();
