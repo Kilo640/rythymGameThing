@@ -15,6 +15,11 @@ public class Controller implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
+		if(Main.settings.state == Settings.KEY_BIND) {
+			Main.settings.keys[Main.settings.selectedOption] = Main.settings.findKeyInv(key);
+			Main.settings.state = Settings.SETTINGS_MENU;
+		}
+		
 		if(key == leftArrow) {leftActive = true;}
 		if(key == downArrow) {downActive = true;}
 		if(key == upArrow) {upActive = true;}

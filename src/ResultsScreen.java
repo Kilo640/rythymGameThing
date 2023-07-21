@@ -26,7 +26,7 @@ public class ResultsScreen {
 		else if(level.sdcb) {writer.draw("Combo:     " + level.judge.maxCombo + " (SDCB)", 1, 20, 510, g2d);}
 		else {writer.draw("Combo:     " + level.judge.maxCombo, 1, 20, 510, g2d);}
 		
-		writer.draw("Press " + Main.settings.exitKey + " to exit to menu", 0.75, 20, 580, g2d);
+		writer.draw("Press " + Main.settings.keys[Settings.ESCAPE] + " to exit to menu", 0.75, 20, 580, g2d);
 		
 		g2d.drawImage(level.score.grade, 420, 50, 300, 300, null);
 	}

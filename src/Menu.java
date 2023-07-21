@@ -40,34 +40,36 @@ public class Menu {
 			case START_SCREEN:
 				if(escapeThisFrame && !escapeHeldLast){
 					menuState = EXIT;
+					
 					quitOption = false;
 				}
 				
 				if(startThisFrame  && !startHeldLast) {
 					menuState = menuOption;
+					Main.game.settings.selectedOption = 0;
 					if(menuState == EXIT) {quitOption = false;}
 				}
 				
 				if(downThisFrame && !downHeldLast) {
 					menuOption++;
-					if(menuOption >= EXIT) {menuOption = EXIT;}
+					if(menuOption > EXIT) {menuOption = LEVEL_SELECTION;}
 				}
 		
 				if(upThisFrame && !upHeldLast) {
 					menuOption--;
-					if(menuOption < LEVEL_SELECTION) {menuOption = 1;}
+					if(menuOption < LEVEL_SELECTION) {menuOption = EXIT;}
 				}
 				break;
 			case LEVEL_SELECTION:
 				if(downThisFrame && !downHeldLast) {
 					selectedLevel++;
-					if(selectedLevel >= levelNames.length) {selectedLevel = levelNames.length - 1;}
+					if(selectedLevel >= levelNames.length) {selectedLevel = 0;}
 				}
 		
 				if(upThisFrame && !upHeldLast) {
 					selectedLevel--;
-					if(selectedLevel < 0) {selectedLevel = 0;}
-				}	
+					if(selectedLevel < 0) {selectedLevel = levelNames.length - 1;}
+				}
 		
 				Main.game.currentLevel = null;
 				if(startThisFrame && !startHeldLast) {
@@ -78,9 +80,7 @@ public class Menu {
 				}
 				break;
 			case OPTIONS:
-				if(escapeThisFrame && !escapeHeldLast){
-					menuState = START_SCREEN;
-				}
+				Main.game.settings.update();
 				break;
 			case EXIT:
 				
@@ -112,7 +112,8 @@ public class Menu {
 			writer.draw(".", 2, 150, 200 + (menuOption - 1) * 75, g2d);
 			break;
 		case LEVEL_SELECTION:
-			writer.draw("Level Select: Press " + Main.settings.startKey + " to start", 0.75, 5, 5, g2d);
+			writer.draw("Level Select: Press " + Main.settings.keys[Settings.START] + " to start", 
+					0.75, 5, 5, g2d);
 			
 			for(int i = 0; i < levelNames.length; i++) {
 				if((i - selectedLevel) >= -1) {
@@ -123,8 +124,7 @@ public class Menu {
 			writer.draw(".", 2, -30, 95, g2d);
 			break;
 		case OPTIONS:
-			writer.draw("Options menu under", 1, 5, 5, g2d);
-			writer.draw("consturuction", 1, 5, 75, g2d);
+			Main.game.settings.draw(g2d);
 			break;
 		case EXIT:
 			writer.draw("Are you sure you want", 1, 70, 100, g2d);
