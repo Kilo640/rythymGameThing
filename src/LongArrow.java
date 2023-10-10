@@ -12,16 +12,16 @@ public class LongArrow extends Arrow {
 	
 	public int duration;
 	public int endTime;
-	private double lastFrameDuration;
+	public double lastFrameDuration;
 	private int frames;
-	private double durationHeld;
-	private int length;
-	private boolean availible;
-	private boolean availibleLast;
+	public double durationHeld;
+	public int length;
+	public boolean availible;
+	public boolean availibleLast;
 	
 	public LongArrow(GamePanel gp, int direction, int time, Level level, 
-		ArrayList<Arrow> arrows, int duration) {
-		super(gp, direction, time, level, arrows);
+		ArrayList<Arrow> levelArrows, int duration) {
+		super(gp, direction, time, level, levelArrows);
 		this.duration = duration;
 		this.length = (int)((1.0 / 60) * scrollSpeed * duration);
 		endTime = time + duration;

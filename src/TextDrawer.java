@@ -6,10 +6,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class TextDrawer {
-	private final int NUMCHARS = 39;
+	private final int NUMCHARS = 41;
 	private final int PERCENT = 'Z' - 'A' + '9' - '0' + 2;
 	private final int POINT = PERCENT + 1;
 	private final int COLON = POINT + 1;
+	private final int MINUS = COLON + 1;
+	private final int PLUS = MINUS + 1;
 	private BufferedImage[] chars = new BufferedImage[NUMCHARS];
 			
 	public TextDrawer() {
@@ -17,6 +19,8 @@ public class TextDrawer {
 			chars[PERCENT] = ImageIO.read(new File("resources/UI/characters/%.png"));
 			chars[POINT] = ImageIO.read(new File("resources/UI/characters/..png"));
 			chars[COLON] = ImageIO.read(new File("resources/UI/characters/colon.png"));
+			chars[MINUS] = ImageIO.read(new File("resources/UI/characters/-.png"));
+			chars[PLUS] = ImageIO.read(new File("resources/UI/characters/+.png"));
 			for(char c = 'A'; c <= 'Z'; c++) {
 				chars[indexOfChar(c)] = ImageIO.read(new File("resources/UI/characters/" + c + ".png"));
 			}
@@ -50,6 +54,12 @@ public class TextDrawer {
 					break;
 				case ':':
 					drawChar(COLON, scale, x, y, g2d);
+					break;
+				case '-':
+					drawChar(MINUS, scale, x, y, g2d);
+					break;
+				case '+':
+					drawChar(PLUS, scale, x, y, g2d);
 					break;
 				}
 			}

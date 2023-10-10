@@ -69,15 +69,14 @@ public class GamePanel extends JPanel implements Runnable{
 			menu.update();
 			break;
 		case GameState.PLAYING:
-			if(currentLevel == null) {currentLevel = new Level(this, menu.levelNames[menu.selectedLevel]);}
+			if(currentLevel == null) {newLevel();}
 			else {currentLevel.update();}
-			if(controller.escapeActive) {currentLevel.endLevel(GameState.MENU);}
 			break;
 		case GameState.RESULTS:
 			if(controller.escapeActive) {GameState.state = GameState.MENU;}
 			break;
 		}
-	}	
+	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -96,6 +95,10 @@ public class GamePanel extends JPanel implements Runnable{
 			}
 	
 		g2d.dispose();
+	}
+
+	public void newLevel() {
+		currentLevel = new Level(this, menu.levelNames[menu.selectedLevel]);
 	}
 }
 

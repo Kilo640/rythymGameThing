@@ -161,4 +161,17 @@ public class Judge extends Entity{
 		
 		return grade;
 	}
+	
+	public void reset() {
+		ok = 0;
+		good = 0;
+		great = 0;
+		perfect = 0;
+		marvelous = 0;
+		miss = 0;
+		accuracy = 0;
+		combo = 0;
+		maxCombo = 0;
+		judgeTime = level.levelTime - DISPLAY_TIME;
+	}
 }

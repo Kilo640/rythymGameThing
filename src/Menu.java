@@ -83,7 +83,6 @@ public class Menu {
 				Main.game.settings.update();
 				break;
 			case EXIT:
-				
 				if(escapeThisFrame && !escapeHeldLast){
 					menuState = START_SCREEN;
 				}

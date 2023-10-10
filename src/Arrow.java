@@ -21,7 +21,7 @@ public class Arrow extends Entity {
 	protected Judge judge;
 	protected Arrow lastArrow;
 
-	public Arrow(GamePanel gp, int direction, int time, Level level, ArrayList<Arrow> arrows) {
+	public Arrow(GamePanel gp, int direction, int time, Level level, ArrayList<Arrow> levelArrows) {
 		super(0, 0);
 		this.gp = gp;
 		this.direction = direction;
@@ -51,10 +51,10 @@ public class Arrow extends Entity {
 		}
 		
 		
-		if (arrows.size() > 0) {
-			Arrow arrow = arrows.get(arrows.size() - 1);
-			for (int i = arrows.size() - 1; i > 0 && arrow.direction != this.direction; i--) {
-				arrow = arrows.get(i);
+		if (levelArrows.size() > 0) {
+			Arrow arrow = levelArrows.get(levelArrows.size() - 1);
+			for (int i = levelArrows.size() - 1; i > 0 && arrow.direction != this.direction; i--) {
+				arrow = levelArrows.get(i);
 			}
 			if(arrow != null && this.direction == arrow.direction) {
 				lastArrow = arrow;
