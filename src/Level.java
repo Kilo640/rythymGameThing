@@ -56,16 +56,23 @@ public class Level {
 	public Level(GamePanel gp, String levelName) {
 		levelState = PLAYING;
 		writer = new TextDrawer();
+		int arrowY = gp.TILE_SIZE;
+		int scoreY = gp.HEIGHT - gp.TILE_SIZE - 24;
+		if(!gp.settings.upscroll) {
+			arrowY = (int)(gp.HEIGHT - 2.5 * gp.TILE_SIZE);
+			scoreY = gp.TILE_SIZE - 12;
+		}
+		
 		this.gp = gp;
-		leftArrow = new ArrowSensor(5*gp.TILE_SIZE - SHIFT, gp.TILE_SIZE,
+		leftArrow = new ArrowSensor(5*gp.TILE_SIZE - SHIFT, arrowY,
 				gp, gp.controller, ArrowSensor.LEFT);
-		downArrow = new ArrowSensor(7*gp.TILE_SIZE - SHIFT, gp.TILE_SIZE, gp, 
+		downArrow = new ArrowSensor(7*gp.TILE_SIZE - SHIFT, arrowY, gp, 
 				gp.controller, ArrowSensor.DOWN);
-		upArrow = new ArrowSensor(9*gp.TILE_SIZE - SHIFT, gp.TILE_SIZE, gp, 
+		upArrow = new ArrowSensor(9*gp.TILE_SIZE - SHIFT, arrowY, gp, 
 				gp.controller, ArrowSensor.UP);
-		rightArrow = new ArrowSensor(11*gp.TILE_SIZE - SHIFT, gp.TILE_SIZE, 
+		rightArrow = new ArrowSensor(11*gp.TILE_SIZE - SHIFT, arrowY, 
 				gp, gp.controller, ArrowSensor.RIGHT);
-		score =  new ScoreUI(6 * gp.TILE_SIZE - SHIFT - 6, gp.HEIGHT - gp.TILE_SIZE - 24, gp, this);
+		score =  new ScoreUI(6 * gp.TILE_SIZE - SHIFT - 6, scoreY, gp, this);
 		combo = new ComboCounter(8 * gp.TILE_SIZE - SHIFT - 6, 6 * gp.TILE_SIZE, gp);
 		judge = new Judge(7 * gp.TILE_SIZE - SHIFT - 6, combo.getY() + gp.TILE_SIZE + 12, this);
 		try {

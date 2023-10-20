@@ -87,10 +87,8 @@ public class Menu {
 					menuState = START_SCREEN;
 				}
 				
-				if(((downThisFrame && !downHeldLast) || (upThisFrame && !upHeldLast)) && !quitOption) {
-					quitOption = true;
-				}else if(((downThisFrame && !downHeldLast) || (upThisFrame && !upHeldLast)) && quitOption) {
-					quitOption = false;
+				if(((downThisFrame && !downHeldLast) || (upThisFrame && !upHeldLast))) {
+					quitOption = !quitOption;
 				}
 				
 				if(startThisFrame && !startHeldLast) {

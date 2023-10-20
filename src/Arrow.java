@@ -64,8 +64,8 @@ public class Arrow extends Entity {
 	}
 
 	public void update() {
-		setPosition(arrowX(), arrowY((int)timeFromTarget));
 		timeFromTarget = time - level.levelTime;
+		setPosition(arrowX(), arrowY((int)timeFromTarget));
 		
 		if (isActive && (lastArrow == null || lastArrow.timeFromTarget < -90 || !lastArrow.isActive)) {
 			if (timeFromTarget < -judge.OK) {
@@ -118,6 +118,7 @@ public class Arrow extends Entity {
 	}
 
 	protected int arrowY(int currTime) {
-		return (int) (gp.TILE_SIZE + (1.0 / 60) * scrollSpeed * (currTime));
+		if(gp.settings.upscroll) {return (int) (gp.TILE_SIZE + (1.0 / 60) * scrollSpeed * (currTime));}
+		else {return (int) (gp.HEIGHT - 2.5 * gp.TILE_SIZE - (1.0 / 60) * scrollSpeed * (currTime));}
 	}
 }

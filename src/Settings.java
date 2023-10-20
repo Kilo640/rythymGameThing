@@ -9,16 +9,17 @@ public class Settings {
 	public static final int NUM_CONTROLS = 8;
 	public static final int ESCAPE = 0, SETTINGS_MENU = 0;
 	public static final int START = 1, KEY_BIND = 1;
-	public static final int UP = 2, CHANGE_NUMBER = 2;
+	public static final int UP = 2, CHANGE_OPTION = 2;
 	public static final int DOWN = 3;
 	public static final int LEFT_ARROW = 4;
 	public static final int DOWN_ARROW = 5;
 	public static final int UP_ARROW = 6;
 	public static final int RIGHT_ARROW = 7;
 	public static final int SCROLL_SPEED = 8;
-	public static final int OFFSET = 9;
-	public static final int RESET = 10;
-	public static final int SAVE = 11;
+	public static final int SCROLL_DIR = 9;
+	public static final int OFFSET = 10;
+	public static final int RESET = 11;
+	public static final int SAVE = 12;
 	
 	private PrintWriter settingsWriter;
 	private Scanner settingsFile;
@@ -26,13 +27,15 @@ public class Settings {
 	public TextDrawer writer = new TextDrawer();
 	public int scrollSpeed;
 	public int offset;
+	public boolean upscroll = false;
 	public int selectedOption = 0;
 	public int state = 0;
 	public String[] keys = new String[NUM_CONTROLS];
 	public String[] keyNames = {"Exit", "Start", "Up Selection", "Down Selection", "Left Arrow",
 			"Down Arrow", "Up Arrow", "Right Arrow"};
-	public String[] options = {"", "", "", "", "", "", "", "", "", "", "Reset to default", 
+	public String[] options = {"", "", "", "", "", "", "", "", "", "", "", "Reset to default", 
 			"Save and Exit to Menu"};
+	
 	
 	public Settings() {
 		controller = Main.game.controller;
@@ -120,6 +123,13 @@ public class Settings {
 		}
 		scrollSpeed = Integer.parseInt(settingsFile.next());
 		
+		while(!str.equals("Scroll_direction:")) {
+			str = settingsFile.next();
+		}
+		str = settingsFile.next();
+		if(str.equalsIgnoreCase("upscroll")) {upscroll = true;}
+		else {upscroll = false;} //!upscroll => downscroll
+		
 		while(!str.equals("Offset(ms):")) {
 			str = settingsFile.next();
 		}
@@ -136,8 +146,8 @@ public class Settings {
 		options[UP_ARROW] =     "Up Arrow:     " + keys[UP_ARROW];
 		options[RIGHT_ARROW] =  "Right Arrow:  " + keys[RIGHT_ARROW];
 		options[SCROLL_SPEED] = "Scroll Speed: " + scrollSpeed;
+		options[SCROLL_DIR] =   "Scroll Dir:   " + (upscroll ? "Upscroll" : "Downscroll");
 		options[OFFSET] =       "Offset:       " + offset;
-		
 		
 		switch(state) {
 			case SETTINGS_MENU:
@@ -155,7 +165,7 @@ public class Settings {
 					if(selectedOption >= ESCAPE && selectedOption <= RIGHT_ARROW) {
 						state = KEY_BIND;
 					}else if(selectedOption >= SCROLL_SPEED && selectedOption <= OFFSET) {
-						state = CHANGE_NUMBER;
+						state = CHANGE_OPTION;
 					}else if(selectedOption == RESET) {
 						keys[ESCAPE] = "ESCAPE";
 						keys[START] = "SPACE";
@@ -181,7 +191,7 @@ public class Settings {
 				break;
 			case KEY_BIND:
 				break;
-			case CHANGE_NUMBER:
+			case CHANGE_OPTION:
 				if(selectedOption == SCROLL_SPEED) {
 					if(Main.game.menu.upThisFrame && !Main.game.menu.upHeldLast) {
 						scrollSpeed++;
@@ -190,6 +200,13 @@ public class Settings {
 					if(Main.game.menu.downThisFrame && !Main.game.menu.downHeldLast) {
 						scrollSpeed--;
 						if(scrollSpeed < 0) {scrollSpeed = 0;}
+					}
+				}
+				
+				if(selectedOption == SCROLL_DIR) {
+					if((Main.game.menu.upThisFrame && !Main.game.menu.upHeldLast) ||
+							(Main.game.menu.downThisFrame && !Main.game.menu.downHeldLast)) {
+						upscroll = !upscroll;
 					}
 				}
 				
@@ -220,7 +237,7 @@ public class Settings {
 				writer.draw("Press Desired Key for:", 1, 5, 5, g2d);
 				writer.draw(keyNames[selectedOption] + " Key", 1, 5, 75, g2d);
 				break;
-			case CHANGE_NUMBER:
+			case CHANGE_OPTION:
 				drawMenu(g2d);
 		}
 	}
@@ -343,6 +360,7 @@ public class Settings {
 				+ "\n"
 				+ "GAMEPLAY SETTINGS:\n"
 				+ "Scroll_speed: " + scrollSpeed + " (Default: 75) (Note: Must be an integer, no decimal value)\n"
+				+ "Scroll_direction: " + (upscroll ? "Upscroll" : "Downscroll") + " (Default: Upscroll)\n"
 				+ "Offset(ms): " + offset + " (Default: 0) (Note: Must be an integer, no decimal value)"
 				);
 		
